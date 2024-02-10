@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           child: const Text('This is my default text!'),
-          
+          backgroundColor: Colors.blueAccent,
           ),
       )
     );
