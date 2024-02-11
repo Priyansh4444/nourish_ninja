@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:nourish_ninja/app/user_login/sign_in.dart';
 
 void main() {
-
-  runApp( MyApp() );
-
+  runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First App'),
-          backgroundColor: Colors.redAccent,
-        ),
-        body: Container(
-          child: const Text('This is my default text!'),
-          backgroundColor: Colors.blueAccent,
-          ),
-      )
+      title: 'Nourish Ninja',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SignInPage(), // Set the sign-in page as the home page
     );
   }
 }
+
