@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../components/error.dart';
-
 class SignForm extends StatefulWidget {
-  const SignForm({Key? key}) : super(key: key);
+  const SignForm({super.key});
 
   @override
   _SignFormState createState() => _SignFormState();
@@ -14,7 +13,6 @@ class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
-  String? conform_password;
   bool? remember = false;
   final List<String?> errors = [];
 
@@ -80,7 +78,7 @@ class _SignFormState extends State<SignForm> {
               } else if (value.length >= 8) {
                 removeError(error: kShortPassError);
               }
-              password = value;
+              return;
             },
             validator: (value) {
               if (value!.isEmpty) {
@@ -102,45 +100,38 @@ class _SignFormState extends State<SignForm> {
             ),
           ),
           const SizedBox(height: 20),
-          TextFormField(
-            obscureText: true,
-            onSaved: (newValue) => conform_password = newValue,
-            onChanged: (value) {
-              if (value.isNotEmpty) {
-                removeError(error: kPassNullError);
-              } else if (value.isNotEmpty && password == conform_password) {
-                removeError(error: kMatchPassError);
-              }
-              conform_password = value;
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                addError(error: kPassNullError);
-                return "";
-              } else if ((password != value)) {
-                addError(error: kMatchPassError);
-                return "";
-              }
-              return null;
-            },
-            decoration: const InputDecoration(
-              labelText: "Confirm Password",
-              hintText: "Re-enter your password",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
-            ),
+          Row(
+            children: [
+              Checkbox(
+                value: remember,
+                activeColor: kPrimaryColor,
+                onChanged: (value) {
+                  setState(() {
+                    remember = value;
+                  });
+                },
+              ),
+              const Text("Remember me"),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                    context, ForgotPasswordScreen.routeName),
+                child: const Text(
+                  "Forgot Password",
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+              )
+            ],
           ),
-          const SizedBox(height: 16),
           FormError(errors: errors),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                KeyboardUtil.hideKeyboard(context);
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
             child: const Text("Continue"),

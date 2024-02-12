@@ -65,7 +65,7 @@ flutter:
   assets:
     - assets/images/ellipse1.svg
     - assets/images/ellipse2.svg
-    - assets/images/g_logo.svg
+    - assets/images/_Google.svg
     - assets/images/Ninja_mad.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see

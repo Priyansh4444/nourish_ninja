@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../general_components/socal_card.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants.dart';
 import './sign_in.dart';
 
@@ -32,12 +31,71 @@ class SignUpScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   const SignForm(),
                   const SizedBox(height: 16),
+                  const SizedBox(height: 16),
+                  Row(children: [
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        height: 1,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Text("Or continue with"),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        height: 1,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ]),
+                  const SizedBox(height: 16),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigate to the desired page
+                      Navigator.pushNamed(context, '/sign_in');
+                    },
+                    child: Text(
+                      'Already have an account? Sign In',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SocalCard(
-                        icon: "assets/images/g_logo.svg",
-                        press: () {},
+                      Expanded(
+                        // Added Expanded widget
+                        flex: 8, // Set flex value to 8
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                "assets/images/_Google.svg",
+                                height: 24,
+                                width: 24,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Google",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
