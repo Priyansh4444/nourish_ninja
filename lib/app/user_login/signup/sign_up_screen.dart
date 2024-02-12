@@ -31,6 +31,15 @@ class SignUpScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   const SignForm(),
                   const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SocalCard(
+                        icon: "assets/images/g_logo.svg",
+                        press: () {},
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'By continuing your confirm that you agree \nwith our Term and Condition',
