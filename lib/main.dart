@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nourish_ninja/app/user_login/signup/sign_up_screen.dart';
+import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
