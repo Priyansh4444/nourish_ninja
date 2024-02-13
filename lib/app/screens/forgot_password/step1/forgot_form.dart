@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // import '../../../components/custom_surfix_icon.dart';
-import '../user_login/components/error.dart';
-import '../user_login/signin/no_account_text.dart';
-import '../../constants.dart';
+import '../../user_login/components/error.dart';
+import '../../user_login/signin/no_account_text.dart';
+import '../../../constants.dart';
 
 class ForgotPassForm extends StatefulWidget {
   const ForgotPassForm({super.key});
