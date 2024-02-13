@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
+import 'package:nourish_ninja/app/screens/forgot_password/forgot.dart';
+import 'package:nourish_ninja/app/screens/forgot_password/forgot_form.dart';
+import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
+import 'package:nourish_ninja/app/screens/user_login/signin/login.dart';
+import 'package:nourish_ninja/app/screens/user_login/successScreen/success_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignUpScreen(), // Set the sign-in page as the home page
+      home: ForgotPasswordScreen(), // Set the sign-in page as the home page
     );
   }
 }
