@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ForgotPasswordScreen(), // Set the sign-in page as the home page
+      home: LoginSuccessScreen(), // Set the sign-in page as the home page
     );
   }
 }
