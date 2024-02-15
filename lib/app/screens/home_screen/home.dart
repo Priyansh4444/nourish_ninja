@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/track_your_progress.dart';
 import 'components/widge_shop.dart';
+import 'components/footer_icons.dart';
 // import other components as needed
 
 class HomeScreen extends StatelessWidget {
@@ -24,6 +25,8 @@ class HomeScreen extends StatelessWidget {
               // add other components here
             ],
           ),
+          const SizedBox(height: 20),
+          FooterIcons(),
           // add other components here
         ],
       ),
