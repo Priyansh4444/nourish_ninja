@@ -12,8 +12,8 @@ class RoundedShopWidget extends StatelessWidget {
         // Add your button click logic here
       },
       child: Container(
-        width: 100,
-        height: 100,
+        width: 50,
+        height: 50,
         decoration: BoxDecoration(
           color: Colors.pink,
           shape: BoxShape.circle,
