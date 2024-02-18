@@ -1,9 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class RoundedShopWidget extends StatelessWidget {
   final int notificationCount;
 
-  const RoundedShopWidget({Key? key, this.notificationCount = 4}) : super(key: key);
+  const RoundedShopWidget({Key? key, this.notificationCount = 100}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +30,18 @@ class RoundedShopWidget extends StatelessWidget {
             ),
             if (notificationCount > 0)
               Positioned(
-                top: -2,
-                right: -2,
+                top: 0,
+                right: 0,
                 child: Container(
-                  width: 22,
-                  height: 22,
+                  width: 20,
+                  height: 20,
                   decoration: BoxDecoration(
                     color: Colors.red,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
                     child: Text(
-                      '$notificationCount',
+                      notificationCount > 9 ? '9+' : '$notificationCount',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
