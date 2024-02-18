@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/screens/home_screen/components/goal_card.dart';
 

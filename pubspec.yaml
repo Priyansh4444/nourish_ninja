@@ -40,6 +40,7 @@ dependencies:
   flutter_svg: ^2.0.9
   firebase_database: ^9.1.7
   syncfusion_flutter_gauges: ^21.2.4
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:
