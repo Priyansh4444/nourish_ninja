@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -21,9 +20,9 @@ class GoalsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Calorie Goals for Today',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.white, // Set text color to white
@@ -56,7 +55,7 @@ class GoalsCard extends StatelessWidget {
                     ], annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
                           widget: Container(
-                              child: Text('90.0',
+                              child: const Text('90.0',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold))),

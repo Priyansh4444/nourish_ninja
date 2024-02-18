@@ -9,21 +9,23 @@ import 'components/footer_icons.dart';
 // import other components as needed
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(), // Set the theme to dark theme
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Home Screen'),
+          title: const Text('Home Screen'),
         ),
         body: Container(
-          child: Column(
+          child: const Column(
             children: [
               Center(
                 child: TrackYourProgress(),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               //   children: const [
@@ -31,13 +33,13 @@ class HomeScreen extends StatelessWidget {
               //     // add other components here
               //   ],
               // ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               // add other components here
               GoalsCard(goal: 100, progress: 12)
             ],
           ),
         ),
-        bottomNavigationBar: FooterIcons(),
+        bottomNavigationBar: const FooterIcons(),
       ),
     );
   }

@@ -47,7 +47,7 @@ class SignInScreen extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
+                            backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7),
                             ),
@@ -59,8 +59,8 @@ class SignInScreen extends StatelessWidget {
                                 height: 24,
                                 width: 24,
                               ),
-                              SizedBox(width: 10),
-                              Text(
+                              const SizedBox(width: 10),
+                              const Text(
                                 "Google",
                                 style: TextStyle(
                                   color: Colors.black,

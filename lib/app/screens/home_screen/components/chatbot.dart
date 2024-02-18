@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ChatbotWidget extends StatefulWidget {
+  const ChatbotWidget({super.key});
+
   @override
   _ChatbotWidgetState createState() => _ChatbotWidgetState();
 }
 
 class _ChatbotWidgetState extends State<ChatbotWidget> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void dispose() {
@@ -29,22 +31,22 @@ class _ChatbotWidgetState extends State<ChatbotWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chatbot'),
+        title: const Text('Chatbot'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _textEditingController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter your text',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _redirectToChatPage,
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         ),
@@ -62,7 +64,7 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat Page'),
+        title: const Text('Chat Page'),
       ),
       body: Center(
         child: Text('You entered: $text'),
