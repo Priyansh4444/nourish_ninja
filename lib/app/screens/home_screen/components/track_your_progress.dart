@@ -9,7 +9,8 @@ class TrackYourProgress extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         padding: const EdgeInsets.all(8.0), // Add padding around the box
-        width: MediaQuery.of(context).size.width * 0.7, // Set the width to 70% of the screen width
+        width: MediaQuery.of(context).size.width *
+            0.7, // Set the width to 70% of the screen width
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
           gradient: LinearGradient(
@@ -43,27 +44,26 @@ class TrackYourProgress extends StatelessWidget {
               flex: 2,
               child: Container(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.lightGreen, // Change the button color to a lighter green
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(13),
-                    bottomRight: Radius.circular(13),
-                    topLeft: Radius.circular(13), // Make the diagonal sharp
-                    bottomLeft: Radius.circular(13), // Make the diagonal sharp
-                  ),
-                ), // Add padding around the button
-                  child: TextButton(
-                    onPressed: () {
-                      // Add your logic here
-                    },
-                    child: Text(
-                      'View Now',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, 
+                    // Set the button color to green
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  child: Text(
+                    'View Now',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
