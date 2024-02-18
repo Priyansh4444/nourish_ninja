@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RoundedShopWidget extends StatelessWidget {
   final int notificationCount;
 
-  const RoundedShopWidget({Key? key, this.notificationCount = 0}) : super(key: key);
+  const RoundedShopWidget({Key? key, this.notificationCount = 4}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +24,15 @@ class RoundedShopWidget extends StatelessWidget {
             Icon(
               Icons.shopping_cart,
               color: Colors.white,
-              size: 50,
+              size: 22,
             ),
             if (notificationCount > 0)
               Positioned(
-                top: 10,
-                right: 10,
+                top: -2,
+                right: -2,
                 child: Container(
-                  width: 20,
-                  height: 20,
+                  width: 22,
+                  height: 22,
                   decoration: BoxDecoration(
                     color: Colors.red,
                     shape: BoxShape.circle,
