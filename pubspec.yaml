@@ -67,6 +67,7 @@ flutter:
     - assets/images/ellipse2.svg
     - assets/images/_Google.svg
     - assets/images/Ninja_mad.svg
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
