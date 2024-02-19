@@ -36,7 +36,6 @@ class HomeScreen extends StatelessWidget {
                 // ),
                 SizedBox(height: 20),
                 // add other components here
-                GoalsCard(goal: 100, progress: 12)
               ],
             ),
           ),
