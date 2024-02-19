@@ -19,24 +19,26 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Home Screen'),
         ),
-        body: Container(
-          child: const Column(
-            children: [
-              Center(
-                child: TrackYourProgress(),
-              ),
-              SizedBox(height: 20),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: const [
-              //     RoundedShopWidget(),
-              //     // add other components here
-              //   ],
-              // ),
-              SizedBox(height: 20),
-              // add other components here
-              GoalsCard(goal: 100, progress: 12)
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                Center(
+                  child: TrackYourProgress(),
+                ),
+                SizedBox(height: 20),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: const [
+                //     RoundedShopWidget(),
+                //     // add other components here
+                //   ],
+                // ),
+                SizedBox(height: 20),
+                // add other components here
+                GoalsCard(goal: 100, progress: 12)
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: const FooterIcons(),
