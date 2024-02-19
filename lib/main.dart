@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(), // Set the sign-in page as the home page
+      home: const HomeScreen(), // Set the sign-in page as the home page
     );
   }
 }

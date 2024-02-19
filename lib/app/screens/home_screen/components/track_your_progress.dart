@@ -13,11 +13,11 @@ class TrackYourProgress extends StatelessWidget {
             0.7, // Set the width to 70% of the screen width
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: const [Colors.black, Colors.green],
-            stops: const [0.3, 0.7],
+            colors: [Colors.black, Colors.green],
+            stops: [0.3, 0.7],
             tileMode: TileMode.clamp,
           ),
         ),
@@ -27,11 +27,11 @@ class TrackYourProgress extends StatelessWidget {
               flex: 3,
               child: Container(
                 alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Track Your Progress',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -49,13 +49,13 @@ class TrackYourProgress extends StatelessWidget {
                     // Add your logic here
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, 
+                    backgroundColor: Colors.green, 
                     // Set the button color to green
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'View Now',
                     style: TextStyle(
                       color: Colors.white,
