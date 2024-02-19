@@ -37,10 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.17.4
   firebase_core: ^2.25.4
+  cloud_firestore: 4.15.4
+  provider: ^6.1.1
   flutter_svg: ^2.0.9
   firebase_database: ^10.4.5
   syncfusion_flutter_gauges: ^24.2.6
   geolocator: ^11.0.0
+  google_generative_ai: ^0.2.0
+  firebase_ml_vision: ^0.12.0+3
+
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,7 @@ flutter:
     - assets/images/ellipse1.svg
     - assets/images/ellipse2.svg
     - assets/images/_Google.svg
+    - .env
     - assets/images/Ninja_mad.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see

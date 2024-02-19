@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -119,7 +121,7 @@ class _SignFormState extends State<SignForm> {
                 return "";
               } else if ((password != value)) {
                 addError(error: kMatchPassError);
-                return "";
+                return "";  
               }
               return null;
             },
