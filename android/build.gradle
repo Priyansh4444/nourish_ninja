@@ -1,6 +1,21 @@
+buildscript {
+    repositories {
+        google() 
+        jcenter() // This repository might be needed for some dependencies
+        mavenCentral() //  // Google's Maven repository
+    }
+    dependencies {
+        // ...
+
+        // Add this line
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.android.tools.build:gradle:7.3.0'  // Google Services plugin
+    }
+}
 allprojects {
     repositories {
         google()
+        jcenter()
         mavenCentral()
     }
 }

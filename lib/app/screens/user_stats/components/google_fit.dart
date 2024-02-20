@@ -5,6 +5,9 @@ import 'package:flutter_health_connect/flutter_health_connect.dart';
 class Stats extends StatefulWidget {
   const Stats({super.key});
 
+  static String routeName = "/stats";
+
+
   @override
   State<Stats> createState() => _MyAppState();
 }
@@ -55,7 +58,7 @@ class _MyAppState extends State<Stats> {
   // ];
 
   List<HealthConnectDataType> types = [
-    HealthConnectDataType.TotalCaloriesBurned,
+    HealthConnectDataType.Nutrition,
   ];
 
   bool readOnly = false;
@@ -71,22 +74,6 @@ class _MyAppState extends State<Stats> {
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                var result = await HealthConnectFactory.isApiSupported();
-                resultText = 'isApiSupported: $result';
-                _updateResultText();
-              },
-              child: const Text('isApiSupported'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                var result = await HealthConnectFactory.isAvailable();
-                resultText = 'isAvailable: $result';
-                _updateResultText();
-              },
-              child: const Text('Check installed'),
-            ),
             ElevatedButton(
               onPressed: () async {
                 await HealthConnectFactory.installHealthConnect();

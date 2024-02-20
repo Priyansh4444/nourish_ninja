@@ -1,11 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
+import 'package:nourish_ninja/firebase_options.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'no_account_text.dart';
 import 'login.dart';
 
 class SignInScreen extends StatelessWidget {
-  static String routeName = "/sign_in";
+  static String routeName = "/login";
+  Future<UserCredential> signInWithGoogle() async {
+  // Trigger the authentication flow
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  print("Firebase initialized");
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+}
 
   const SignInScreen({super.key});
   @override
@@ -45,7 +70,17 @@ class SignInScreen extends StatelessWidget {
                         // Added Expanded widget
                         flex: 8, // Set flex value to 8
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            signInWithGoogle().then((userCredential) {
+                              // Handle successful login
+                              Navigator.pushNamed(context, Stats.routeName);
+                              // You can navigate to a new screen or perform any other action here
+                            }).catchError((error) {
+                              // Handle login error
+                              // You can display an error message or perform any other action here
+                              print("Error occurred while signing in with Google: $error");
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(

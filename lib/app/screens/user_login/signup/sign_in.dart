@@ -1,25 +1,38 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
+import 'package:nourish_ninja/firebase_options.dart';
 
 import '../../../constants.dart';
 import '../components/error.dart';
 
-class SignForm extends StatefulWidget {
-  const SignForm({Key? key}) : super(key: key);
-
+class SignInForm extends StatefulWidget {
+  const SignInForm({Key? key}) : super(key: key);
   @override
-  _SignFormState createState() => _SignFormState();
+  _SignInFormState createState() => _SignInFormState();
+  
+  
 }
 
-class _SignFormState extends State<SignForm> {
+class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
   String? conform_password;
   bool? remember = false;
   final List<String?> errors = [];
-
+  late final FirebaseAuth _auth = FirebaseAuth.instance;
+    @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+  }
   void addError({String? error}) {
     if (!errors.contains(error)) {
       setState(() {
@@ -66,10 +79,7 @@ class _SignFormState extends State<SignForm> {
             decoration: const InputDecoration(
               labelText: "Email",
               hintText: "Enter your email",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
             ),
           ),
           const SizedBox(height: 20),
@@ -97,10 +107,7 @@ class _SignFormState extends State<SignForm> {
             decoration: const InputDecoration(
               labelText: "Password",
               hintText: "Enter your password",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
           ),
           const SizedBox(height: 20),
@@ -128,21 +135,33 @@ class _SignFormState extends State<SignForm> {
             decoration: const InputDecoration(
               labelText: "Confirm Password",
               hintText: "Re-enter your password",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
           ),
           const SizedBox(height: 16),
           FormError(errors: errors),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                try {
+                  UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+                    email: email!,
+                    password: password!,
+                  );
+                  // User successfully signed in
+                  
+                Navigator.pushNamed(context, Stats.routeName);
+                  // Navigate to another screen, etc.
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    print('No user found for that email.');
+                  } else if (e.code == 'wrong-password') {
+                    print('Wrong password provided for that user.');
+                  }
+                }
               }
             },
             child: const Text("Continue"),

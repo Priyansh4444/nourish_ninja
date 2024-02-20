@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
+import 'package:nourish_ninja/firebase_options.dart';
 
 import '../../../constants.dart';
 import '../components/error.dart';
@@ -10,6 +14,7 @@ import '../successScreen/success_screen.dart';
 class SignForm extends StatefulWidget {
   const SignForm({super.key});
 
+
   @override
   _SignFormState createState() => _SignFormState();
 }
@@ -20,6 +25,14 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
+  late final FirebaseAuth _auth = FirebaseAuth.instance;
+    @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+  }
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
@@ -131,12 +144,21 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+            onPressed: () async {
+              try{
+                UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                  email: email!,
+                  password: password!,
+                );
+                // User successfully signed in
+                Navigator.pushNamed(context, Stats.routeName);
+                // Navigate to another screen, etc.
+              } on FirebaseAuthException catch (e) {
+                if (e.code == 'user-not-found') {
+                  print('No user found for that email.');
+                } else if (e.code == 'wrong-password') {
+                  print('Wrong password provided for that user.');
+                }
               }
             },
             child: const Text("Continue"),
