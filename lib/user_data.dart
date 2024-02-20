@@ -1,79 +1,87 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserData {
-  int calories;
-  int carbohydrates;
-  int dietaryFiber;
-  int iodine;
-  int magnesium;
-  int potassium;
-  int protein;
-  int sodium;
-  int sugar;
-  int totalFat;
-  int transFat;
+  String calories;
+  String carbohydrates;
+  String dietaryFiber;
+  String iodine;
+  String magnesium;
+  String potassium;
+  String protein;
+  String sodium;
+  String sugar;
+  String totalFat;
+  String transFat;
   String username;
-  int vitaminA;
-  int vitaminB12;
-  int vitaminB6;
-  int vitaminC;
-  int vitaminD;
-  int vitaminE;
-  int vitaminK;
+  String vitaminA;
+  String vitaminB12;
+  String vitaminB6;
+  String vitaminC;
+  String vitaminD;
+  String vitaminE;
+  String vitaminK;
   String? uid;
+  String weight;
+  String height;
 
   UserData({
-    this.calories = 0,
-    this.carbohydrates = 0,
-    this.dietaryFiber = 0,
-    this.iodine = 0,
-    this.magnesium = 0,
-    this.potassium = 0,
-    this.protein = 0,
-    this.sodium = 0,
-    this.sugar = 0,
-    this.totalFat = 0,
-    this.transFat = 0,
+    this.calories = "300",
+    this.carbohydrates = "0",
+    this.dietaryFiber = "0",
+    this.iodine = "0",
+    this.magnesium = "0",
+    this.potassium = "0",
+    this.protein = "0",
+    this.sodium = "0",
+    this.sugar = "0",
+    this.totalFat = "0",
+    this.transFat = "0",
     this.username = "Priyansh",
-    this.vitaminA = 0,
-    this.vitaminB12 = 0,
-    this.vitaminB6 = 0,
-    this.vitaminC = 0,
-    this.vitaminD = 0,
-    this.vitaminE = 0,
-    this.vitaminK = 0,
+    this.vitaminA = "0",
+    this.vitaminB12 = "0",
+    this.vitaminB6 = "0",
+    this.vitaminC = "0",
+    this.vitaminD = "0",
+    this.vitaminE = "0",
+    this.vitaminK = "0",
+    this.weight = "53.0",
+    this.height = "1.75",
   });
 
-  Future<void> getUser(String uuid) async {
-    // Fetch the data of the user's UUID from Firestore
-    DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('users').doc(uuid).get();
+  Future<String> getUser(String uuid) async {
+   // Fetch the data of the user's UUID from Firestore
+      DocumentSnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance.collection('users').doc('0zjldbIupRTSsAzLpRpClMjs1lL2').get();
 
-    // Update the user data based on the fetched data
-    if (snapshot.exists) {
+      print(snapshot.data().runtimeType);
       Map<String, dynamic> userData = snapshot.data()!;
-      calories = userData['calories'] ?? calories;
-      carbohydrates = userData['carbohydrates'] ?? carbohydrates;
-      dietaryFiber = userData['dietaryFiber'] ?? dietaryFiber;
-      iodine = userData['iodine'] ?? iodine;
-      magnesium = userData['magnesium'] ?? magnesium;
-      potassium = userData['potassium'] ?? potassium;
-      protein = userData['protein'] ?? protein;
-      sodium = userData['sodium'] ?? sodium;
-      sugar = userData['sugar'] ?? sugar;
-      totalFat = userData['totalFat'] ?? totalFat;
-      transFat = userData['transFat'] ?? transFat;
-      username = userData['username'] ?? username;
-      vitaminA = userData['vitaminA'] ?? vitaminA;
-      vitaminB12 = userData['vitaminB12'] ?? vitaminB12;
-      vitaminB6 = userData['vitaminB6'] ?? vitaminB6;
-      vitaminC = userData['vitaminC'] ?? vitaminC;
-      vitaminD = userData['vitaminD'] ?? vitaminD;
-      vitaminE = userData['vitaminE'] ?? vitaminE;
-      vitaminK = userData['vitaminK'] ?? vitaminK;
-    }
+      print(userData);
+      calories = (userData['calories'] ?? calories).toString();
+      carbohydrates = (userData['carbohydrates'] ?? carbohydrates).toString();
+      dietaryFiber = userData['dietaryFiber']?.toString() ?? dietaryFiber;
+      iodine = userData['iodine']?.toString() ?? iodine;
+      magnesium = userData['magnesium']?.toString() ?? magnesium;
+      potassium = userData['potassium']?.toString() ?? potassium;
+      protein = userData['protein']?.toString() ?? protein;
+      sodium = userData['sodium']?.toString() ?? sodium;
+      sugar = userData['sugar']?.toString() ?? sugar;
+      totalFat = userData['totalFat']?.toString() ?? totalFat;
+      transFat = userData['transFat']?.toString() ?? transFat;
+      username = userData['username']?.toString() ?? username;
+      vitaminA = userData['vitaminA']?.toString() ?? vitaminA;
+      vitaminB12 = userData['vitaminB12']?.toString() ?? vitaminB12;
+      vitaminB6 = userData['vitaminB6']?.toString() ?? vitaminB6;
+      vitaminC = userData['vitaminC']?.toString() ?? vitaminC;
+      vitaminD = userData['vitaminD']?.toString() ?? vitaminD;
+      vitaminE = userData['vitaminE']?.toString() ?? vitaminE;
+      vitaminK = userData['vitaminK']?.toString() ?? vitaminK;
+      height = userData['height']?.toString() ?? height;
+      weight = userData['weight']?.toString() ?? weight;
+      // Update the user data based on the fetched data
+      return "Calories: $calories, Carbohydrates: $carbohydrates, Dietary Fiber: $dietaryFiber, Iodine: $iodine, Magnesium: $magnesium, Potassium: $potassium, Protein: $protein, Sodium: $sodium, Sugar: $sugar, Total Fat: $totalFat";
   }
 
   Future<void> addUser(String uuid, String json_data) async {
@@ -101,6 +109,8 @@ class UserData {
     'vitaminD': results['vitaminD'] ?? vitaminD,
     'vitaminE': results['vitaminE'] ?? vitaminE,
     'vitaminK': results['vitaminK'] ?? vitaminK,
+    'height': results['height'] ?? height,
+    'weight': results['weight'] ?? weight,
   };
 
     // Add the user data to Firestore using the UUID as the index

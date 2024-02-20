@@ -131,7 +131,8 @@ class _MyAppState extends State<Stats> {
                 var user1 = UserData();
 
                 user1.addUser(userId, jsonResults);
-                user1.getUser(jsonResults);
+                var words = await user1.getUser(jsonResults);
+                print(words);
                 _updateResultText();
               },
               child: const Text('Get Record'),
