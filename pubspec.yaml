@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  camera: ^0.10.5+9
   firebase_core: ^2.25.4
   flutter:
     sdk: flutter
@@ -36,9 +37,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   flutter_dotenv: ^5.1.0
+  # flutter_health_connect: ^1.2.3
   flutter_svg: ^2.0.9
   google_generative_ai: ^0.2.0
+  image_picker: ^1.0.7
+  path: ^1.9.0
+  path_provider: ^2.1.2
   percent_indicator: ^4.2.3
+
 
 dev_dependencies:
   flutter_test:
