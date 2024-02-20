@@ -1,4 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<uses-permission android:name="android.permission.health.READ_BODY_FAT"/>
+<uses-permission android:name="android.permission.health.WRITE_BODY_FAT"/>
+<uses-permission android:name="android.permission.health.READ_HEIGHT"/>
+<uses-permission android:name="android.permission.health.WRITE_HEIGHT"/>
+<uses-permission android:name="android.permission.health.READ_HYDRATION"/>
+<uses-permission android:name="android.permission.health.WRITE_HYDRATION"/>
+<uses-permission android:name="android.permission.health.READ_NUTRITION"/>
+<uses-permission android:name="android.permission.health.WRITE_NUTRITION"/>
+<uses-permission android:name="android.permission.health.READ_TOTAL_CALORIES_BURNED"/>
+<uses-permission android:name="android.permission.health.WRITE_TOTAL_CALORIES_BURNED"/>
+<uses-permission android:name="android.permission.health.READ_WEIGHT"/>
+<uses-permission android:name="android.permission.health.WRITE_WEIGHT"/>
     <application
         android:label="nourish_ninja"
         android:name="${applicationName}"
@@ -23,7 +35,17 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            
         </activity>
+            <activity
+      android:name=".PermissionsRationaleActivity"
+      android:exported="true">
+    <intent-filter>
+      <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+    </intent-filter>
+  </activity>
+
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
