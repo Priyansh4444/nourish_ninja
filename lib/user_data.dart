@@ -78,29 +78,29 @@ class UserData {
 
   Future<void> addUser(String uuid, String json_data) async {
     // Create a map of the user data to be added
-    Map<String, dynamic> results = json.decode(json_data);
+    Map<String, dynamic> results = json.decode(json_data)['records'][0];
   print(results);
   // Create a map of the user data to be added
   Map<String, dynamic> userData = {
-    'calories': results['records']['calories'] ?? calories,
-    'carbohydrates': results['records']['carbohydrates'] ?? carbohydrates,
-    'dietaryFiber': results['records']['dietaryFiber'] ?? dietaryFiber,
-    'iodine': results['records']['iodine'] ?? iodine,
-    'magnesium': results['records']['magnesium'] ?? magnesium,
-    'potassium': results['records']['potassium'] ?? potassium,
-    'protein': results['records'][0]['protein'] ?? protein,
-    'sodium': results['records']['sodium'] ?? sodium,
-    'sugar': results['records'][0]['sugar'] ?? sugar,
-    'totalFat': results['records'][0]['totalFat'] ?? totalFat,
-    'transFat': results['records']['transFat'] ?? transFat,
+    'calories': results['calories'] ?? calories,
+    'carbohydrates': results['carbohydrates'] ?? carbohydrates,
+    'dietaryFiber': results['dietaryFiber'] ?? dietaryFiber,
+    'iodine': results['iodine'] ?? iodine,
+    'magnesium': results['magnesium'] ?? magnesium,
+    'potassium': results['potassium'] ?? potassium,
+    'protein': results['protein'] ?? protein,
+    'sodium': results['sodium'] ?? sodium,
+    'sugar': results['sugar'] ?? sugar,
+    'totalFat': results['totalFat'] ?? totalFat,
+    'transFat': results['transFat'] ?? transFat,
     'username': results['username'] ?? username,
     'vitaminA': results['vitaminA'] ?? vitaminA,
-    'vitaminB12': results['records']['vitaminB12'] ?? vitaminB12,
-    'vitaminB6': results['records']['vitaminB6'] ?? vitaminB6,
-    'vitaminC': results['records']['vitaminC'] ?? vitaminC,
-    'vitaminD': results['records']['vitaminD'] ?? vitaminD,
-    'vitaminE': results['records']['vitaminE'] ?? vitaminE,
-    'vitaminK': results['records']['vitaminK'] ?? vitaminK,
+    'vitaminB12': results['vitaminB12'] ?? vitaminB12,
+    'vitaminB6': results['vitaminB6'] ?? vitaminB6,
+    'vitaminC': results['vitaminC'] ?? vitaminC,
+    'vitaminD': results['vitaminD'] ?? vitaminD,
+    'vitaminE': results['vitaminE'] ?? vitaminE,
+    'vitaminK': results['vitaminK'] ?? vitaminK,
   };
 
     // Add the user data to Firestore using the UUID as the index
