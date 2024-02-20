@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_health_connect/flutter_health_connect.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:nourish_ninja/app/constants.dart';
+import 'package:nourish_ninja/user_data.dart';
 
 class Stats extends StatefulWidget {
   const Stats({super.key});
 
   static String routeName = "/stats";
-
 
   @override
   State<Stats> createState() => _MyAppState();
@@ -61,15 +65,16 @@ class _MyAppState extends State<Stats> {
     HealthConnectDataType.Nutrition,
   ];
 
+// Get the current user credentials in Firebase being used by the app
+
   bool readOnly = false;
   String resultText = '';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Health Connect'),
+          title: new Text(Constants.userUUID),
         ),
         body: ListView(
           padding: const EdgeInsets.all(16),
@@ -111,19 +116,22 @@ class _MyAppState extends State<Stats> {
             ElevatedButton(
               onPressed: () async {
                 var startTime =
-                DateTime.now().subtract(const Duration(days: 4));
+                    DateTime.now().subtract(const Duration(days: 4));
                 var endTime = DateTime.now();
                 var results = await HealthConnectFactory.getRecord(
                   type: types.first,
                   startTime: startTime,
                   endTime: endTime,
                 );
-                // results.forEach((key, value) {
-                //   if (key == HealthConnectDataType.Steps.name) {
-                //     print(value);
-                //   }
-                // });
                 resultText = '\ntype: $types\n\n$results';
+                var jsonResults = json.encode(results);
+                FirebaseAuth auth = FirebaseAuth.instance;
+                User? currentUser = auth.currentUser;
+                String userId = currentUser!.uid;
+                var user1 = UserData();
+
+                user1.addUser(userId, jsonResults);
+                user1.getUser(jsonResults);
                 _updateResultText();
               },
               child: const Text('Get Record'),

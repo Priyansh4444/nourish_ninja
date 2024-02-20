@@ -150,7 +150,8 @@ class _SignInFormState extends State<SignInForm> {
                   UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
                     email: email!,
                     password: password!,
-                  );
+                  );  
+                Constants.userUUID = userCredential.user!.uid;
                   // User successfully signed in
                   
                 Navigator.pushNamed(context, Stats.routeName);

@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   camera: ^0.10.5+9
+  cloud_firestore: ^4.15.5
   firebase_auth: ^4.17.5
   firebase_core: ^2.25.4
   flutter:

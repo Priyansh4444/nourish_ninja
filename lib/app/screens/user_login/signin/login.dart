@@ -150,6 +150,7 @@ class _SignFormState extends State<SignForm> {
                   email: email!,
                   password: password!,
                 );
+                Constants.userUUID = userCredential.user!.uid;
                 // User successfully signed in
                 Navigator.pushNamed(context, Stats.routeName);
                 // Navigate to another screen, etc.

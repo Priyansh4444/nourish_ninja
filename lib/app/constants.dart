@@ -46,3 +46,7 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: const BorderSide(color: kTextColor),
   );
 }
+
+class Constants {
+  static String userUUID = '';
+}

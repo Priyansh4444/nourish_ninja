@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 import '../../../constants.dart';
-import './sign_in.dart';
-    
+import './sign_in.dart';    
+
 class SignUpScreen extends StatelessWidget {
   static String routeName = "/sign_up";
   
