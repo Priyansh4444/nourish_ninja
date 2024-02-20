@@ -31,15 +31,17 @@ class _MyHomePageState extends State<MyHomePage> {
       debugPrint('No \$API_KEY environment variable');
       exit(1);
     }
+
+    
     final model = GenerativeModel(
         model: 'gemini-pro',
         apiKey: apiKey,
-        generationConfig: GenerationConfig(maxOutputTokens: 100));
+        generationConfig: GenerationConfig(maxOutputTokens: 5000));
     final chat = model.startChat(history: [
-      Content.text('Hello, I have 100 dogs in my house.'),
-      Content.model([TextPart('Great to meet you. What would you like to know?')])
+      Content.text('Act Like A Nutritionist, Consult multiple sources, and talk about what ingredients i should but from the store today using these nutritions about mecoupled with some beautiful recipes, by taking into consider everything from my age to calories my height, and wieght, also tell me my health status in 4000 tokens'),
+      Content.model([TextPart('Great to meet you. I am the perfect nutritionist and I can help you with your diet')])
     ]);
-    var content = Content.text('How many paws are in my house?');
+    var content = Content.text('?');
     var response = await chat.sendMessage(content);
     debugPrint(response.text);
   }

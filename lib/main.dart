@@ -40,16 +40,6 @@ void main() {
   runApp(MyApp());
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Nourish Ninja',
-//       home: Stat                                                                     s(),
-//     );
-//   }
-// }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -64,43 +54,4 @@ class MyApp extends StatelessWidget {
 
 
 
-
-
-
-
-// class MyApp extends StatefulWidget {
-//   @override
-//   _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
-// }
-
-// class _FitnessAppHomeScreenState extends State<MyApp>
-//     with TickerProviderStateMixin {
-//   AnimationController? animationController;
-
-
-//   Widget tabBody = Container(
-//     color: NourishNinjaTheme.background,
-//   );
-
-//   @override
-//   void initState() {
-//     animationController = AnimationController(
-//         duration: const Duration(milliseconds: 600), vsync: this);
-//     tabBody = Tracker(animationController: animationController);
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Nourish Ninja',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-      
-//       home: Tracker(animationController: animationController),
-
-//     );
-//   }
-// }
 

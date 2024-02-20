@@ -1,10 +1,12 @@
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:flutter/material.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/meals.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/water.dart';
 
 class Tracker extends StatefulWidget {
   const Tracker({Key? key, this.animationController}) : super(key: key);
-
+  static const String routeName = '/tracker';
   final AnimationController? animationController;
   @override
   _TrackerState createState() => _TrackerState();
@@ -61,6 +63,28 @@ class _TrackerState extends State<Tracker>
             curve:
                 Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
+      ),
+    );
+    
+    listViews.add(
+      WaterView(
+        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+                parent: widget.animationController!,
+                curve: Interval((1 / count) * 7, 1.0,
+                    curve: Curves.fastOutSlowIn))),
+        mainScreenAnimationController: widget.animationController!,
+      ),
+    );
+
+    listViews.add(
+      MealsListView(
+        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+                parent: widget.animationController!,
+                curve: Interval((1 / count) * 8, 1.0,
+                    curve: Curves.fastOutSlowIn))),
+        mainScreenAnimationController: widget.animationController!,
       ),
     );
     

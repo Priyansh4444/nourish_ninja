@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_health_connect/flutter_health_connect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:nourish_ninja/app/complete_signin.dart';
 import 'package:nourish_ninja/app/constants.dart';
+import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
 
 class Stats extends StatefulWidget {
@@ -132,8 +134,10 @@ class _MyAppState extends State<Stats> {
 
                 user1.addUser(userId, jsonResults);
                 var words = await user1.getUser(jsonResults);
+                makeGetRequest();
                 print(words);
                 _updateResultText();
+                Navigator.pushNamed(context, Tracker.routeName);
               },
               child: const Text('Get Record'),
             ),
