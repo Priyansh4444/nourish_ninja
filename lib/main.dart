@@ -3,45 +3,67 @@ import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 
-void main() {
-  runApp(MyApp());
+import './image_scanning.dart';
+
+import 'package:camera/camera.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
+
+  runApp(MyApp(firstCamera));
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
-}
+class MyApp extends StatelessWidget {
+  final CameraDescription camera;
 
-class _FitnessAppHomeScreenState extends State<MyApp>
-    with TickerProviderStateMixin {
-  AnimationController? animationController;
-
-
-  Widget tabBody = Container(
-    color: NourishNinjaTheme.background,
-  );
-
-  @override
-  void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = Tracker(animationController: animationController);
-    super.initState();
-  }
+  MyApp(this.camera);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nourish Ninja',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      
-      home: Tracker(animationController: animationController),
-
+      theme: ThemeData.dark(),
+      home: TakePictureScreen(camera: camera),
     );
   }
 }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
+// }
+
+// class _FitnessAppHomeScreenState extends State<MyApp>
+//     with TickerProviderStateMixin {
+//   AnimationController? animationController;
+
+
+//   Widget tabBody = Container(
+//     color: NourishNinjaTheme.background,
+//   );
+
+//   @override
+//   void initState() {
+//     animationController = AnimationController(
+//         duration: const Duration(milliseconds: 600), vsync: this);
+//     tabBody = Tracker(animationController: animationController);
+//     super.initState();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Nourish Ninja',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+      
+//       home: Tracker(animationController: animationController),
+
+//     );
+//   }
+// }
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({Key? key}) : super(key: key);
