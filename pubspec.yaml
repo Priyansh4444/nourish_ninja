@@ -79,6 +79,20 @@ flutter:
     - assets/images/_Google.svg
     - assets/images/Ninja_mad.svg
     - .env
+    - assets/images/food.png
+    - assets/images/fire.png
+    - assets/images/water.png
+    - assets/images/breakfast.png
+    - assets/images/lunch.png
+    - assets/images/crisps.png 
+    - assets/images/tab_1.png
+    - assets/images/tab2.png
+    - assets/images/tab_3.png
+    - assets/images/tab_4.png 
+    - assets/images/tab_1s.png
+    - assets/images/tab2s.png
+    - assets/images/tab_3s.png
+    - assets/images/tab_4s.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,7 +1,9 @@
+import 'package:nourish_ninja/app/screens/user_stats/components/bottom_bar_view.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/meals.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/tabIcon.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/water.dart';
 
 class Tracker extends StatefulWidget {
@@ -12,11 +14,15 @@ class Tracker extends StatefulWidget {
   _TrackerState createState() => _TrackerState();
 }
 
-class _TrackerState extends State<Tracker>
-    with TickerProviderStateMixin {
-  Animation<double>? topBarAnimation;
+Widget tabBody = Container(
+  color: NourishNinjaTheme.background,
+);
 
+class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
+  Animation<double>? topBarAnimation;
+  AnimationController? animationController;
   List<Widget> listViews = <Widget>[];
+  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
 
@@ -27,7 +33,10 @@ class _TrackerState extends State<Tracker>
             parent: widget.animationController!,
             curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
     addAllListData();
-
+    tabIconsList.forEach((TabIconData tab) {
+      tab.isSelected = false;
+    });
+    tabIconsList[0].isSelected = true;
     scrollController.addListener(() {
       if (scrollController.offset >= 24) {
         if (topBarOpacity != 1.0) {
@@ -65,7 +74,7 @@ class _TrackerState extends State<Tracker>
         animationController: widget.animationController!,
       ),
     );
-    
+
     listViews.add(
       WaterView(
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -87,12 +96,46 @@ class _TrackerState extends State<Tracker>
         mainScreenAnimationController: widget.animationController!,
       ),
     );
-    
   }
 
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 50));
     return true;
+  }
+
+  Widget bottomBar() {
+    return Column(
+      children: <Widget>[
+        const Expanded(
+          child: SizedBox(),
+        ),
+        BottomBarView(
+          tabIconsList: tabIconsList,
+          addClick: () {},
+          changeIndex: (int index) {
+            if (index == 0 || index == 2) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = Tracker(animationController: animationController);
+                });
+              });
+            } else if (index == 1 || index == 3) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = Tracker(animationController: animationController);
+                });
+              });
+            }
+          },
+        ),
+      ],
+    );
   }
 
   @override
@@ -107,7 +150,8 @@ class _TrackerState extends State<Tracker>
             getAppBarUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
-            )
+            ),
+            bottomBar(),
           ],
         ),
       ),
@@ -140,6 +184,7 @@ class _TrackerState extends State<Tracker>
       },
     );
   }
+  
 
   Widget getAppBarUI() {
     return Column(
@@ -270,4 +315,5 @@ class _TrackerState extends State<Tracker>
       ],
     );
   }
+  
 }

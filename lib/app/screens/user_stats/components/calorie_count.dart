@@ -101,7 +101,7 @@ class DietView extends StatelessWidget {
                                                   width: 28,
                                                   height: 28,
                                                   child: Image.asset(
-                                                      "assets/fitness_app/eaten.png"),
+                                                      "assets/images/food.png"),
                                                 ),
                                                 Padding(
                                                   padding:
@@ -200,7 +200,7 @@ class DietView extends StatelessWidget {
                                                   width: 28,
                                                   height: 28,
                                                   child: Image.asset(
-                                                      "assets/fitness_app/burned.png"),
+                                                      "assets/images/fire.png"),
                                                 ),
                                                 Padding(
                                                   padding:
