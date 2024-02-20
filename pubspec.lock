@@ -198,14 +198,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
-  flutter_scalable_ocr:
-    dependency: "direct main"
-    description:
-      name: flutter_scalable_ocr
-      sha256: "9e5c239c993c3c6c0b530b42165547b275d7db18d646cfc840b750aea1a7c988"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -236,18 +228,18 @@ packages:
     dependency: transitive
     description:
       name: google_mlkit_commons
-      sha256: "68429fa2e17686819dbaf2344790e3daa59924ef8625dd24f97f9deaaed42767"
+      sha256: "046586b381cdd139f7f6a05ad6998f7e339d061bd70158249907358394b5f496"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.6.1"
   google_mlkit_text_recognition:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_mlkit_text_recognition
-      sha256: "0d5ac35fc666c311e0cd34f64c28f0842eb192ee2f23d49845a14d147aede146"
+      sha256: d484de2a10961a6f0ff8b54cc92b71bfbb0e65509be0903edca0e1f9256ca4c2
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.11.0"
   http:
     dependency: transitive
     description:

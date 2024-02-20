@@ -1,30 +1,46 @@
 
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
+import 'package:nourish_ninja/app/scanner/google_ml_kit.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 
 import './image_scanning.dart';
 
 import 'package:camera/camera.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final cameras = await availableCameras();
-  final firstCamera = cameras.first;
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   final cameras = await availableCameras();
+//   final firstCamera = cameras.first;
 
-  runApp(MyApp(firstCamera));
+//   runApp(MyApp(firstCamera));
+// }
+
+// class MyApp extends StatelessWidget {
+//   final CameraDescription camera;
+
+//   MyApp(this.camera);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       theme: ThemeData.dark(),
+//       home: TakePictureScreen(camera: camera),
+//     );
+//   }
+// }
+
+
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final CameraDescription camera;
-
-  MyApp(this.camera);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
-      home: TakePictureScreen(camera: camera),
+      title: 'Nourish Ninja',
+      home: TextRecognizerView(),
     );
   }
 }
