@@ -20,7 +20,7 @@ Future<Map<String, String>> parseStringToMap({String assetsFileName = '.env'}) a
   }
   return environment;
 }
-Future<void> main() async {
+Future<String?> responds(String input) async {
   // Access your API key as an environment variable (see "Set up your API key" above)
   final apiKey = Platform.environment['API_KEY'];
   if (apiKey == null) {
@@ -30,13 +30,13 @@ Future<void> main() async {
   final model = GenerativeModel(
       model: 'gemini-pro',
       apiKey: apiKey!,
-      generationConfig: GenerationConfig(maxOutputTokens: 100));
+      generationConfig: GenerationConfig(maxOutputTokens: 1800));
   // Initialize the chat
   final chat = model.startChat(history: [
-    Content.text('Hello, I have 2 dogs in my house.'),
-    Content.model([TextPart('Great to meet you. What would you like to know?')])
+    Content.text('Hello you are a Master nutritoinist and cook, you have roleplaying as a ninja.'),
+    Content.model([TextPart('I am a nutritionist and I can help you with your diet!!!')]),
   ]);
-  var content = Content.text('How many paws are in my house?');
+  var content = Content.text(input);
   var response = await chat.sendMessage(content);
-  print(response.text);
+  return (response.text);
 }

@@ -1,11 +1,16 @@
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:nourish_ninja/user_data.dart';
 
 import 'detector_view.dart';
 import './painters/text_detector_painter.dart';
 
 class TextRecognizerView extends StatefulWidget {
+  static String routeName = "/text_recognizer";
   @override
   State<TextRecognizerView> createState() => _TextRecognizerViewState();
 }
@@ -104,11 +109,43 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
         inputImage.metadata!.rotation,
         _cameraLensDirection,
       );
-      _customPaint = CustomPaint(painter: painter);
+
+      
     } else {
-      _text = 'Recognized text:\n\n${recognizedText.text}';
+
+      final apiKey = 'AIzaSyAkuigKK5uquYAUxoT8pbDBi9CMqsVDNC0';
+
+      if (apiKey == null) {
+        print('No \$API_KEY environment variable');
+      }
+      // For text-only input, use the gemini-pro model
+      final model = GenerativeModel(
+          model: 'gemini-pro',
+          apiKey: apiKey,
+          generationConfig: GenerationConfig(maxOutputTokens: 1800));
+      // Initialize the chat
+      final chat = model.startChat(history: [
+        Content.text(
+            'Make the following recognized text into a text of ingredients and return it as ONLY A JSON TO ME in AND DONT PUT ANYTHING YOU ARE NOT SURE OF, also remove the ```json and stuff and make it perfectly parsable as a normal text 1800 tokens:'),
+        Content.model([
+          TextPart('Ok I will do so!')
+        ]),
+      ]);
+      print(recognizedText.text);
+      var content = Content.text(recognizedText.text);
+      var response = await chat.sendMessage(content);
+      print(response.text);
+     
+      _text = 'Added to database $response';
       // TODO: set _customPaint to draw boundingRect on top of image
+                FirebaseAuth auth = FirebaseAuth.instance;
+                User? currentUser = auth.currentUser;
+                String userId = currentUser!.uid;
+                var user1 = UserIngredients();
+                user1.addIngredients(userId, response.text!);
+      
       _customPaint = null;
+      
     }
     _isBusy = false;
     if (mounted) {

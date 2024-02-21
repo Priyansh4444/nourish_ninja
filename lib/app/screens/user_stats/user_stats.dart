@@ -1,3 +1,6 @@
+import 'package:nourish_ninja/app/general_components/chat_ui.dart';
+import 'package:nourish_ninja/app/scanner/google_ml_kit.dart';
+import 'package:nourish_ninja/app/screens/user_login/signin/login.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/bottom_bar_view.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
@@ -113,24 +116,26 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
-              animationController?.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = Tracker(animationController: animationController);
-                });
-              });
-            } else if (index == 1 || index == 3) {
-              animationController?.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = Tracker(animationController: animationController);
-                });
-              });
+            if (index == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Tracker(animationController: animationController)),
+              );
+            } else if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatUI()),
+              );
+            } else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TextRecognizerView()),
+              );
+            } else if (index == 3) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignForm()),
+              );
             }
           },
         ),

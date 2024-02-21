@@ -33,7 +33,7 @@ class MealsListData {
       endColor: '#5C5EDD',
     ),
     MealsListData(
-      imagePath: 'assets/images/snack.png',
+      imagePath: 'assets/images/crisps.png',
       titleTxt: 'Snack',
       kacl: 0,
       meals: <String>['Recommend:', '800 kcal'],
@@ -41,7 +41,7 @@ class MealsListData {
       endColor: '#FF5287',
     ),
     MealsListData(
-      imagePath: 'assets/images/dinner.png',
+      imagePath: 'assets/images/food.png',
       titleTxt: 'Dinner',
       kacl: 0,
       meals: <String>['Recommend:', '703 kcal'],

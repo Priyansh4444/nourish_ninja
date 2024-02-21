@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'utils.dart';
 
 class GalleryView extends StatefulWidget {
+  static String routeName = "/gallery";
   GalleryView(
       {Key? key,
       required this.title,
