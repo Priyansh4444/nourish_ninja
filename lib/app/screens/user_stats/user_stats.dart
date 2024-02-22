@@ -10,7 +10,7 @@ import 'package:nourish_ninja/app/screens/user_stats/components/tabIcon.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/water.dart';
 
 class Tracker extends StatefulWidget {
-  const Tracker({Key? key, this.animationController}) : super(key: key);
+  Tracker({Key? key, this.animationController}) : super(key: key);
   static const String routeName = '/tracker';
   final AnimationController? animationController;
   @override
@@ -28,7 +28,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
-
+  final trackerKey = GlobalKey<_TrackerState>();
   @override
   void initState() {
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -117,10 +117,6 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
           addClick: () {},
           changeIndex: (int index) {
             if (index == 0) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Tracker(animationController: animationController)),
-              );
             } else if (index == 1) {
               Navigator.push(
                 context,

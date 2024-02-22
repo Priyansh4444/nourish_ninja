@@ -1,19 +1,10 @@
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/complete_signin.dart';
-import 'package:nourish_ninja/app/general_components/chat_ui.dart';
-import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
-import 'package:nourish_ninja/app/scanner/gallery_view.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
-import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
-import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
-import 'package:nourish_ninja/app/scanner/google_ml_kit.dart';
-import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
-
-import './image_scanning.dart';
 
 import 'package:camera/camera.dart';
+import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -58,7 +49,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Nourish Ninja',
-      initialRoute: SignInScreen.routeName,
+      initialRoute: Tracker.routeName,
       routes: routes,
     );
   }

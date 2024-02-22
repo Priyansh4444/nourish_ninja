@@ -7,10 +7,12 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 
 // Add the following import
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nourish_ninja/user_data.dart';
 
 // Add a TextEditingController
 final TextEditingController textEditingController = TextEditingController();
+
 
 Future<Map<String, String>> parseStringToMap(
     {String assetsFileName = '.env'}) async {
@@ -31,15 +33,15 @@ Future<Map<String, String>> parseStringToMap(
 
 Future<String?> responds(String input) async {
   // Access your API key as an environment variable (see "Set up your API key" above)
-  final apiKey = 'AIzaSyAkuigKK5uquYAUxoT8pbDBi9CMqsVDNC0';
-
+   await dotenv.load(fileName: ".env");
+final apiKey = dotenv.env['API_KEY'];
   if (apiKey == null) {
     print('No \$API_KEY environment variable');
   }
   // For text-only input, use the gemini-pro model
   final model = GenerativeModel(
       model: 'gemini-pro',
-      apiKey: apiKey,
+      apiKey: apiKey!,
       generationConfig: GenerationConfig(maxOutputTokens: 1800));
   // Initialize the chat
   final chat = model.startChat(history: [

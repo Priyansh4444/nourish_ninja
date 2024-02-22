@@ -39,7 +39,8 @@
         </activity>
             <activity
       android:name=".PermissionsRationaleActivity"
-      android:exported="true">
+      android:exported="true"
+      android:enableOnBackInvokedCallback="true">
     <intent-filter>
       <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
     </intent-filter>

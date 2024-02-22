@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:nourish_ninja/user_data.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'detector_view.dart';
 import './painters/text_detector_painter.dart';
 
@@ -112,8 +112,8 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
 
       
     } else {
-
-      final apiKey = 'AIzaSyAkuigKK5uquYAUxoT8pbDBi9CMqsVDNC0';
+      await dotenv.load();
+    final apiKey = dotenv.env['API_KEY'];
 
       if (apiKey == null) {
         print('No \$API_KEY environment variable');

@@ -87,23 +87,7 @@ class _MyAppState extends State<Stats> {
                 await HealthConnectFactory.installHealthConnect();
               },
               child: const Text('Install Health Connect'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await HealthConnectFactory.openHealthConnectSettings();
-              },
-              child: const Text('Open Health Connect Settings'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                var result = await HealthConnectFactory.hasPermissions(
-                  types,
-                  readOnly: readOnly,
-                );
-                resultText = 'hasPermissions: $result';
-              },
-              child: const Text('Has Permissions'),
-            ),
+            ),         
             ElevatedButton(
               onPressed: () async {
                 var result = await HealthConnectFactory.requestPermissions(
