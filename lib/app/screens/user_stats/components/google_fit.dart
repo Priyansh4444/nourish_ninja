@@ -8,6 +8,7 @@ import 'package:nourish_ninja/app/complete_signin.dart';
 import 'package:nourish_ninja/app/constants.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
+import 'package:path/path.dart';
 
 class Stats extends StatefulWidget {
   const Stats({super.key});
@@ -100,7 +101,6 @@ class _MyAppState extends State<Stats> {
                   readOnly: readOnly,
                 );
                 resultText = 'hasPermissions: $result';
-                _updateResultText();
               },
               child: const Text('Has Permissions'),
             ),
@@ -111,7 +111,6 @@ class _MyAppState extends State<Stats> {
                   readOnly: readOnly,
                 );
                 resultText = 'requestPermissions: $result';
-                _updateResultText();
               },
               child: const Text('Request Permissions'),
             ),
@@ -131,12 +130,10 @@ class _MyAppState extends State<Stats> {
                 User? currentUser = auth.currentUser;
                 String userId = currentUser!.uid;
                 var user1 = UserData();
-
+                print(currentUser.uid);
                 user1.addUser(userId, jsonResults);
-                var words = await user1.getUser(jsonResults);
+                var words = await user1.getUser(userId);
                 makeGetRequest();
-                print(words);
-                _updateResultText();
                 Navigator.pushNamed(context, Tracker.routeName);
               },
               child: const Text('Get Record'),
@@ -148,7 +145,4 @@ class _MyAppState extends State<Stats> {
     );
   }
 
-  void _updateResultText() {
-    setState(() {});
-  }
 }

@@ -60,7 +60,7 @@ class UserData {
     DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
         .collection('users')
-        .doc('0zjldbIupRTSsAzLpRpClMjs1lL2')
+        .doc(uuid)
         .get();
 
     print(snapshot.data().runtimeType);
