@@ -121,7 +121,7 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
       // For text-only input, use the gemini-pro model
       final model = GenerativeModel(
           model: 'gemini-pro',
-          apiKey: apiKey,
+          apiKey: apiKey!,
           generationConfig: GenerationConfig(maxOutputTokens: 1800));
       // Initialize the chat
       final chat = model.startChat(history: [
@@ -137,7 +137,6 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
       print(response.text);
      
       _text = 'Added to database $response';
-      // TODO: set _customPaint to draw boundingRect on top of image
                 FirebaseAuth auth = FirebaseAuth.instance;
                 User? currentUser = auth.currentUser;
                 String userId = currentUser!.uid;
