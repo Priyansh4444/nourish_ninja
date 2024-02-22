@@ -1,11 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-
-// Add the following import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nourish_ninja/user_data.dart';
