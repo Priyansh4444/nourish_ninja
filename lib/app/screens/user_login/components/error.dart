@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class FormError extends StatelessWidget {
   const FormError({
-    Key? key,
+    super.key,
     required this.errors,
-  }) : super(key: key);
+  });
 
   final List<String?> errors;
 

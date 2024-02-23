@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nourish_ninja/app/screens/user_login/signin/login.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 import '../../../constants.dart';
 import './sign_in.dart';    

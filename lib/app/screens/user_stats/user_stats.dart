@@ -10,7 +10,7 @@ import 'package:nourish_ninja/app/screens/user_stats/components/tabIcon.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/water.dart';
 
 class Tracker extends StatefulWidget {
-  Tracker({Key? key, this.animationController}) : super(key: key);
+  const Tracker({super.key, this.animationController});
   static const String routeName = '/tracker';
   final AnimationController? animationController;
   @override
@@ -34,11 +34,11 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
             parent: widget.animationController!,
-            curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
+            curve: const Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
     addAllListData();
-    tabIconsList.forEach((TabIconData tab) {
+    for (var tab in tabIconsList) {
       tab.isSelected = false;
-    });
+    }
     tabIconsList[0].isSelected = true;
     scrollController.addListener(() {
       if (scrollController.offset >= 24) {
@@ -73,7 +73,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve:
-                Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+                const Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
       ),
     );
@@ -83,7 +83,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
                 parent: widget.animationController!,
-                curve: Interval((1 / count) * 7, 1.0,
+                curve: const Interval((1 / count) * 7, 1.0,
                     curve: Curves.fastOutSlowIn))),
         mainScreenAnimationController: widget.animationController!,
       ),
@@ -94,7 +94,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
                 parent: widget.animationController!,
-                curve: Interval((1 / count) * 8, 1.0,
+                curve: const Interval((1 / count) * 8, 1.0,
                     curve: Curves.fastOutSlowIn))),
         mainScreenAnimationController: widget.animationController!,
       ),
@@ -120,12 +120,12 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
             } else if (index == 1) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChatUI()),
+                MaterialPageRoute(builder: (context) => const ChatUI()),
               );
             } else if (index == 2) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TextRecognizerView()),
+                MaterialPageRoute(builder: (context) => const TextRecognizerView()),
               );
             } else if (index == 3) {
               Navigator.push(
@@ -250,7 +250,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(32.0)),
                                 onTap: () {},
-                                child: Center(
+                                child: const Center(
                                   child: Icon(
                                     Icons.keyboard_arrow_left,
                                     color: NourishNinjaTheme.grey,
@@ -258,15 +258,15 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
+                            const Padding(
+                              padding: EdgeInsets.only(
                                 left: 8,
                                 right: 8,
                               ),
                               child: Row(
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 8),
+                                    padding: EdgeInsets.only(right: 8),
                                     child: Icon(
                                       Icons.calendar_today,
                                       color: NourishNinjaTheme.grey,
@@ -295,7 +295,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(32.0)),
                                 onTap: () {},
-                                child: Center(
+                                child: const Center(
                                   child: Icon(
                                     Icons.keyboard_arrow_right,
                                     color: NourishNinjaTheme.grey,

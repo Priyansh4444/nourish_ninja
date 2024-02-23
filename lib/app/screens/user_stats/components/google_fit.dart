@@ -3,12 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_health_connect/flutter_health_connect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:nourish_ninja/app/complete_signin.dart';
 import 'package:nourish_ninja/app/constants.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
-import 'package:path/path.dart';
 
 class Stats extends StatefulWidget {
   const Stats({super.key});
@@ -77,7 +74,7 @@ class _MyAppState extends State<Stats> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: new Text(Constants.userUUID),
+          title: Text(Constants.userUUID),
         ),
         body: ListView(
           padding: const EdgeInsets.all(16),

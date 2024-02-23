@@ -50,6 +50,9 @@ dependencies:
   percent_indicator: ^4.2.3
 
 
+  google_mlkit_commons: any
+  vector_math: any
+  http: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

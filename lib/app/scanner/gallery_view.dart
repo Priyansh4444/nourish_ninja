@@ -10,13 +10,12 @@ import 'utils.dart';
 
 class GalleryView extends StatefulWidget {
   static String routeName = "/gallery";
-  GalleryView(
-      {Key? key,
+  const GalleryView(
+      {super.key,
       required this.title,
       this.text,
       required this.onImage,
-      required this.onDetectorViewModeChanged})
-      : super(key: key);
+      required this.onDetectorViewModeChanged});
 
   final String title;
   final String? text;
@@ -46,7 +45,7 @@ class _GalleryViewState extends State<GalleryView> {
           title: Text(widget.title),
           actions: [
             Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: const EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: widget.onDetectorViewModeChanged,
                 child: Icon(
@@ -72,28 +71,28 @@ class _GalleryViewState extends State<GalleryView> {
                 ],
               ),
             )
-          : Icon(
+          : const Icon(
               Icons.image,
               size: 200,
             ),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
           onPressed: _getImageAsset,
-          child: Text('From Assets'),
+          child: const Text('From Assets'),
         ),
       ),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
-          child: Text('From Gallery'),
+          child: const Text('From Gallery'),
           onPressed: () => _getImage(ImageSource.gallery),
         ),
       ),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
-          child: Text('Take a picture'),
+          child: const Text('Take a picture'),
           onPressed: () => _getImage(ImageSource.camera),
         ),
       ),
@@ -140,7 +139,7 @@ class _GalleryViewState extends State<GalleryView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Select image',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -167,7 +166,7 @@ class _GalleryViewState extends State<GalleryView> {
                   ),
                   ElevatedButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: Text('Cancel')),
+                      child: const Text('Cancel')),
                 ],
               ),
             ),

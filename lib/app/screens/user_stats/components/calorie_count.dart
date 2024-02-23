@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import '../../../general_components/ninja_themes.dart';
-import 'package:nourish_ninja/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -10,8 +9,7 @@ class DietView extends StatelessWidget {
   final Animation<double>? animation;
 
   const DietView(
-      {Key? key, this.animationController, this.animation})
-      : super(key: key);
+      {super.key, this.animationController, this.animation});
 
   @override
   Widget build(BuildContext context) {
@@ -652,13 +650,13 @@ class CurvePainter extends CustomPainter {
 
     final gradient1 = new SweepGradient(
       tileMode: TileMode.repeated,
-      colors: [Colors.white, Colors.white],
+      colors: const [Colors.white, Colors.white],
     );
 
     var cPaint = new Paint();
-    cPaint..shader = gradient1.createShader(rect);
-    cPaint..color = Colors.white;
-    cPaint..strokeWidth = 14 / 2;
+    cPaint.shader = gradient1.createShader(rect);
+    cPaint.color = Colors.white;
+    cPaint.strokeWidth = 14 / 2;
     canvas.save();
 
     final centerToCircle = size.width / 2;
@@ -693,7 +691,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
+      hexColor = 'FF$hexColor';
     }
     return int.parse(hexColor, radix: 16);
   }

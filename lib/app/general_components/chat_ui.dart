@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nourish_ninja/user_data.dart';
 
@@ -63,13 +62,13 @@ class MessageBubble extends StatelessWidget {
   final String text;
   final bool isAi;
 
-  const MessageBubble({required this.text, required this.isAi});
+  const MessageBubble({super.key, required this.text, required this.isAi});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      padding: EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isAi ? Colors.grey[300] : Colors.black,
         borderRadius: BorderRadius.circular(16),
@@ -87,6 +86,8 @@ class MessageBubble extends StatelessWidget {
 
 class ChatUI extends StatefulWidget {
   static String routeName = "/chat";
+
+  const ChatUI({super.key});
   @override
   _ChatUIState createState() => _ChatUIState();
 }
@@ -96,7 +97,7 @@ class _ChatUIState extends State<ChatUI> {
     Message(text: 'Hello! How can I assist you today?', isAi: true),
   ];
 
-  TextEditingController _textEditingController =
+  final TextEditingController _textEditingController =
       TextEditingController(); // Add a TextEditingController
 
   @override
@@ -136,7 +137,7 @@ class _ChatUIState extends State<ChatUI> {
                         _textEditingController, // Assign the TextEditingController
                     decoration: const InputDecoration(
                       hintText: 'Type a message...',
-                      border: const OutlineInputBorder(),
+                      border: OutlineInputBorder(),
                     ),
                     onChanged: (text) {
                       setState(() {
@@ -149,7 +150,7 @@ class _ChatUIState extends State<ChatUI> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: () async {
                     setState(() {
                       final newMessage = Message(text: _textEditingController.text, isAi: false);

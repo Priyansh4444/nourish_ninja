@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -95,9 +94,9 @@ class UserData {
     return "Calories: $calories, Carbohydrates: $carbohydrates, Dietary Fiber: $dietaryFiber, Iodine: $iodine, Magnesium: $magnesium, Potassium: $potassium, Protein: $protein, Sodium: $sodium, Sugar: $sugar, Total Fat: $totalFat";
   }
 
-  Future<void> addUser(String uuid, String json_data) async {
+  Future<void> addUser(String uuid, String jsonData) async {
     // Create a map of the user data to be added
-    Map<String, dynamic> results = json.decode(json_data)['records'][0];
+    Map<String, dynamic> results = json.decode(jsonData)['records'][0];
     print(results);
     // Create a map of the user data to be added
     Map<String, dynamic> userData = {
@@ -172,13 +171,13 @@ class UserIngredients {
 
   UserIngredients({this.ingredients});
 
-  Future<void> addIngredients(String uuid, String json_data) async {
+  Future<void> addIngredients(String uuid, String jsonData) async {
     // Create a map of the user data to be added
 
     // Create a map of the user data to be added
     // Create a map of the user data to be added
     Map<String, dynamic> userData = {
-      'ingredients': json_data ?? "",
+      'ingredients': jsonData ?? "",
     };
 
     // Add the user data to Firestore using the UUID as the index

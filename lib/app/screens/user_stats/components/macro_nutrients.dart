@@ -15,7 +15,7 @@ class MacroNutrient {
 class MacroNutrientProgress extends StatelessWidget {
   final MacroNutrient nutrient;
 
-  MacroNutrientProgress({required this.nutrient});
+  const MacroNutrientProgress({super.key, required this.nutrient});
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +25,21 @@ class MacroNutrientProgress extends StatelessWidget {
       children: [
         Text(
           nutrient.name,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         LinearProgressIndicator(
           value: progress,
           backgroundColor: Colors.grey[300],
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           'Progress: ${(progress * 100).toStringAsFixed(1)}%',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
           ),
         ),
