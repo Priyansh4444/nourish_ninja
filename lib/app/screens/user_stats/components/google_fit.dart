@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_health_connect/flutter_health_connect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nourish_ninja/app/constants.dart';
+import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
 
@@ -75,51 +76,100 @@ class _MyAppState extends State<Stats> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(Constants.userUUID),
-        ),
+        backgroundColor: Colors.black,
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                await HealthConnectFactory.installHealthConnect();
-              },
-              child: const Text('Install Health Connect'),
-            ),         
-            ElevatedButton(
-              onPressed: () async {
-                var result = await HealthConnectFactory.requestPermissions(
-                  types,
-                  readOnly: readOnly,
-                );
-                resultText = 'requestPermissions: $result';
-              },
-              child: const Text('Request Permissions'),
+            SizedBox(height: 250),
+            FractionallySizedBox(
+              widthFactor: 0.7,
+              child: ElevatedButton(
+                onPressed: () async {
+                  await HealthConnectFactory.installHealthConnect();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: NourishNinjaTheme.darkText,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(13),
+                      bottomLeft: Radius.circular(13),
+                    ),
+                  ),
+                ),
+                child: const Text(
+                  'Install Health Connect',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () async {
-                var startTime =
-                    DateTime.now().subtract(const Duration(days: 4));
-                var endTime = DateTime.now();
-                var results = await HealthConnectFactory.getRecord(
-                  type: types.first,
-                  startTime: startTime,
-                  endTime: endTime,
-                );
-                resultText = '\ntype: $types\n\n$results';
-                var jsonResults = json.encode(results);
-                FirebaseAuth auth = FirebaseAuth.instance;
-                User? currentUser = auth.currentUser;
-                String userId = currentUser!.uid;
-                var user1 = UserData();
-                print(currentUser.uid);
-                user1.addUser(userId, jsonResults);
-                var words = await user1.getUser(userId);
-                makeGetRequest();
-                Navigator.pushNamed(context, Tracker.routeName);
-              },
-              child: const Text('Get Record'),
+            SizedBox(height: 80),
+            FractionallySizedBox(
+              widthFactor: 0.7,
+              child: ElevatedButton(
+                onPressed: () async {
+                  var result = await HealthConnectFactory.requestPermissions(
+                    types,
+                    readOnly: readOnly,
+                  );
+                  resultText = 'requestPermissions: $result';
+                },
+                child: const Text('Request Permissions',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: NourishNinjaTheme.darkText,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(13),
+                      bottomLeft: Radius.circular(13),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 80),
+            FractionallySizedBox(
+              widthFactor: 0.7,
+              child: ElevatedButton(
+                onPressed: () async {
+                  var startTime =
+                      DateTime.now().subtract(const Duration(days: 4));
+                  var endTime = DateTime.now();
+                  var results = await HealthConnectFactory.getRecord(
+                    type: types.first,
+                    startTime: startTime,
+                    endTime: endTime,
+                  );
+
+                  resultText = '\ntype: $types\n\n$results';
+                  var jsonResults = json.encode(results);
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  User? currentUser = auth.currentUser;
+                  String userId = currentUser!.uid;
+                  var user1 = UserData();
+                  print(currentUser.uid);
+                  user1.addUser(userId, jsonResults);
+                  var words = await user1.getUser(userId);
+                  makeGetRequest();
+                  Navigator.pushNamed(context, Tracker.routeName);
+                },
+                child: const Text('Get Record',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: NourishNinjaTheme.darkText,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(13),
+                      bottomLeft: Radius.circular(13),
+                    ),
+                  ),
+                ),
+              ),
             ),
             Text(resultText),
           ],
@@ -127,5 +177,4 @@ class _MyAppState extends State<Stats> {
       ),
     );
   }
-
 }
