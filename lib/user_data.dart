@@ -177,7 +177,7 @@ class UserIngredients {
     // Create a map of the user data to be added
     // Create a map of the user data to be added
     Map<String, dynamic> userData = {
-      'ingredients': jsonData ?? "",
+      'ingredients': jsonData,
     };
 
     // Add the user data to Firestore using the UUID as the index

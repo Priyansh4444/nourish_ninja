@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
 import 'package:nourish_ninja/firebase_options.dart';
+import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 
 import '../../../constants.dart';
 import '../components/error.dart';
@@ -49,8 +50,9 @@ class _SignFormState extends State<SignForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Form(
+  @override
+Widget build(BuildContext context) {
+  return Form(
       key: _formKey,
       child: Column(
         children: [
@@ -75,16 +77,16 @@ class _SignFormState extends State<SignForm> {
               }
               return null;
             },
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: "Email",
               hintText: "Enter your email",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+              // Apply color to label and hint text
+              labelStyle: TextStyle(color: NourishNinjaTheme.darkText),
+              hintStyle: TextStyle(color: NourishNinjaTheme.dark_grey),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           TextFormField(
             obscureText: true,
             onSaved: (newValue) => password = newValue,
@@ -106,16 +108,16 @@ class _SignFormState extends State<SignForm> {
               }
               return null;
             },
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: "Password",
               hintText: "Enter your password",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+              // Apply color to label and hint text
+              labelStyle: TextStyle(color: NourishNinjaTheme.darkText),
+              hintStyle: TextStyle(color: NourishNinjaTheme.dark_grey),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Row(
             children: [
               Checkbox(
@@ -127,24 +129,33 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              const Text("Remember me"),
-              const Spacer(),
+              Text(
+                "Remember me",
+                style: TextStyle(color: NourishNinjaTheme.dark_grey),
+              ),
+              Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: const Text(
+                  context,
+                  ForgotPasswordScreen.routeName,
+                ),
+                child: Text(
                   "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
+                  style: TextStyle(
+                    color: Colors.black,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               )
             ],
           ),
           FormError(errors: errors),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
-              try{
-                UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+              try {
+                UserCredential userCredential =
+                    await _auth.signInWithEmailAndPassword(
                   email: email!,
                   password: password!,
                 );
@@ -160,10 +171,22 @@ class _SignFormState extends State<SignForm> {
                 }
               }
             },
-            child: const Text("Continue"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(13),
+                  bottomLeft: Radius.circular(13),
+                ),
+              ),
+            ),
+            child: Text(
+              "Continue",
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ],
       ),
     );
-  }
+}
 }

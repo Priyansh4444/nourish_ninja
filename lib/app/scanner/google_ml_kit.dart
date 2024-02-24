@@ -104,12 +104,6 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
     final recognizedText = await _textRecognizer.processImage(inputImage);
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
-      final painter = TextRecognizerPainter(
-        recognizedText,
-        inputImage.metadata!.size,
-        inputImage.metadata!.rotation,
-        _cameraLensDirection,
-      );
 
       
     } else {

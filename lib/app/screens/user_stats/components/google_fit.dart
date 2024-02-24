@@ -62,6 +62,8 @@ class _MyAppState extends State<Stats> {
   // ];
 
   List<HealthConnectDataType> types = [
+    HealthConnectDataType.Weight,
+    HealthConnectDataType.Height,
     HealthConnectDataType.Nutrition,
   ];
 

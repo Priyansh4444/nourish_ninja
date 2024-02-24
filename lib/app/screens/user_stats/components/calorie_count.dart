@@ -4,12 +4,42 @@ import '../../../general_components/ninja_themes.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class DietView extends StatelessWidget {
+class DietView extends StatefulWidget {
+  const DietView({super.key, this.animationController, this.animation});
+
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const DietView(
-      {super.key, this.animationController, this.animation});
+  @override
+  _CalorieCountState createState() => _CalorieCountState(animation: animation, animationController: animationController);
+}
+
+class _CalorieCountState extends State<DietView>
+    with SingleTickerProviderStateMixin {
+  AnimationController? animationController;
+
+  double proteinCount = 100;
+  double carbsCount = 150;
+  double fatCount = 50;
+
+  _CalorieCountState({required this.animationController, required this.animation});
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
+    animationController!.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController!.dispose();
+    super.dispose();
+  }
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +109,8 @@ class DietView extends StatelessWidget {
                                                 'Eaten',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      NourishNinjaTheme.fontName,
+                                                  fontFamily: NourishNinjaTheme
+                                                      .fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
@@ -178,8 +208,8 @@ class DietView extends StatelessWidget {
                                                 'Burned',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      NourishNinjaTheme.fontName,
+                                                  fontFamily: NourishNinjaTheme
+                                                      .fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
@@ -380,7 +410,8 @@ class DietView extends StatelessWidget {
                                     child: Row(
                                       children: <Widget>[
                                         Container(
-                                          width: ((70 / 1.2) * animation!.value),
+                                          width:
+                                              ((70 / 1.2) * animation!.value),
                                           height: 4,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(colors: [
@@ -405,8 +436,8 @@ class DietView extends StatelessWidget {
                                       fontFamily: NourishNinjaTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color:
-                                          NourishNinjaTheme.grey.withOpacity(0.5),
+                                      color: NourishNinjaTheme.grey
+                                          .withOpacity(0.5),
                                     ),
                                   ),
                                 ),
@@ -471,7 +502,8 @@ class DietView extends StatelessWidget {
                                         '30g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: NourishNinjaTheme.fontName,
+                                          fontFamily:
+                                              NourishNinjaTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
                                           color: NourishNinjaTheme.grey
@@ -542,7 +574,8 @@ class DietView extends StatelessWidget {
                                         '10g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: NourishNinjaTheme.fontName,
+                                          fontFamily:
+                                              NourishNinjaTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
                                           color: NourishNinjaTheme.grey

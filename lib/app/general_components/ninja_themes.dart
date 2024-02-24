@@ -2,21 +2,21 @@
 
 class NourishNinjaTheme {
   NourishNinjaTheme._();
-  static const Color nearlyWhite = Color.fromARGB(255, 216, 216, 216);
-  static const Color white = Color.fromARGB(255, 28, 255, 183);
-  static const Color background = Color.fromARGB(255, 0, 145, 255);
-  static const Color nearlyDarkBlue = Color(0xFF2633C5);
+  static const Color nearlyWhite = Color.fromARGB(255, 252, 252, 252);
+  static const Color white = Color.fromARGB(255, 4, 255, 222);
+  static const Color background = Color.fromARGB(255, 0, 0, 0);
+  static const Color nearlyDarkBlue = Color.fromARGB(255, 0, 0, 255);
 
-  static const Color nearlyBlue = Color.fromARGB(255, 205, 0, 181);
-  static const Color nearlyBlack = Color.fromARGB(255, 0, 0, 0);
-  static const Color grey = Color.fromARGB(255, 108, 108, 108);
-  static const Color dark_grey = Color.fromARGB(255, 23, 25, 27);
+  static const Color nearlyBlue = Color.fromARGB(255, 0, 255, 140);
+  static const Color nearlyBlack = Color.fromARGB(255, 32, 32, 32);
+  static const Color grey = Color.fromARGB(255, 30, 28, 28);
+  static const Color dark_grey = Color.fromARGB(255, 0, 0, 0);
 
-  static const Color darkText = Color.fromARGB(255, 255, 0, 0);
-  static const Color darkerText = Color.fromARGB(255, 255, 146, 45);
-  static const Color lightText = Color.fromARGB(255, 238, 248, 103);
-  static const Color deactivatedText = Color.fromARGB(255, 255, 94, 94);
-  static const Color dismissibleBackground = Color.fromARGB(255, 155, 6, 163);
+  static const Color darkText = Color.fromARGB(255, 34, 34, 34);
+  static const Color darkerText = Color.fromARGB(255, 33, 33, 33);
+  static const Color lightText = Color.fromARGB(255, 238, 255, 0);
+  static const Color deactivatedText = Color.fromARGB(255, 255, 0, 0);
+  static const Color dismissibleBackground = Color.fromARGB(255, 242, 0, 255);
   static const Color spacer = Color(0xFFF2F2F2);
   static const String fontName = 'Roboto';
 
