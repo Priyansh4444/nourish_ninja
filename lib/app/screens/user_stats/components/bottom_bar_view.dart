@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
+import 'package:nourish_ninja/app/image/takeimages.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/tabIcon.dart';
 import 'package:flutter/material.dart';
 
@@ -160,7 +161,12 @@ class _BottomBarViewState extends State<BottomBarView>
                           splashColor: Colors.white.withOpacity(0.1),
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
-                          onTap: widget.addClick,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TakeImagesScreen()),
+                            );
+                          },
                           child: const Icon(
                             Icons.add,
                             color: NourishNinjaTheme.white,

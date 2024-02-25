@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Nourish Ninja',
-      initialRoute: TakeImagesScreen.routeName,
+      initialRoute: SignInScreen.routeName,
       routes: routes,
     );
   }

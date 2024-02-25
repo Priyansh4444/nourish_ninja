@@ -13,10 +13,10 @@ void addNutritionToHealthConnect(name, protein, carbs, fat, calories) async {
       .doc(uuid)
       .get();
   Map<String, dynamic> userData = snapshot.data()!;
-  userData['calories'] = calories;
-  userData['carbohydrates'] = carbs;
-  userData['protein'] = protein;
-  userData['totalFat'] = fat;
+  userData['calories'] += calories;
+  userData['carbohydrates'] += carbs;
+  userData['protein']["grams"] += protein;
+  userData['totalFat']["grams"] += fat;
   userData['foodItems'] = name;
   await FirebaseFirestore.instance
       .collection('users')

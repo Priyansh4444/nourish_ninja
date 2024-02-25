@@ -87,7 +87,7 @@ class _CalorieCountState extends State<DietView>
     user_data = await getUser(userId!);
     user_goals = await getUserGoals(userId!);
     print('---------------------------------');
-    print(user_data['protein']['grams']);
+    print(user_data);
     print('---------------------------------');
     print(user_goals);
   }
@@ -469,7 +469,7 @@ class _CalorieCountState extends State<DietView>
                                       children: <Widget>[
                                         Container(
                                           width:
-                                              ((70 / user_goals['carbohydrates'].toInt()??1/user_data['carbohydrates']??1) * animation!.value),
+                                              ((70 / (user_goals["carbohydrates"]/user_data['carbohydrates']).toInt().clamp(1,70)) * animation!.value),
                                           height: 4,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(colors: [
@@ -536,7 +536,7 @@ class _CalorieCountState extends State<DietView>
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / (user_goals["protein"]/user_data['protein']['grams']!).toInt()) *
+                                                width: ((70 / (user_goals["protein"]/user_data['protein']['grams']).toInt().clamp(1,70) )*
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
@@ -608,7 +608,7 @@ class _CalorieCountState extends State<DietView>
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / (user_goals['fat'].toInt()??1/user_data['totalFat']["grams"]??1).toInt()) *
+                                              width: ((70 / (user_goals["fat"]/user_data['totalFat']['grams']).toInt().clamp(1,70)) *
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
