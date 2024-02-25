@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/user_data.dart';
 
 // Add a TextEditingController
 final TextEditingController textEditingController = TextEditingController();
-
 
 Future<Map<String, String>> parseStringToMap(
     {String assetsFileName = '.env'}) async {
@@ -28,8 +28,8 @@ Future<Map<String, String>> parseStringToMap(
 
 Future<String?> responds(String input) async {
   // Access your API key as an environment variable (see "Set up your API key" above)
-   await dotenv.load(fileName: ".env");
-final apiKey = dotenv.env['API_KEY'];
+  await dotenv.load(fileName: ".env");
+  final apiKey = dotenv.env['API_KEY'];
   if (apiKey == null) {
     print('No \$API_KEY environment variable');
   }
@@ -152,50 +152,49 @@ class _ChatUIState extends State<ChatUI> {
                 IconButton(
                   icon: const Icon(Icons.send),
                   onPressed: () async {
-                    setState(() {
-                      final newMessage = Message(text: _textEditingController.text, isAi: false);
+                    setState(() async {
+                      final newMessage = Message(
+                          text: _textEditingController.text, isAi: false);
                       messages.add(newMessage);
                       message = _textEditingController.text;
                       _textEditingController.clear();
                       print('User Message: $message');
-                    });
-                    if (message.contains("ingredients")) {
+
+                      String responseText =
+                          "Hello you are a Master nutritionist and cook, you have roleplaying as a ninja. in 1800 tokens, answer to this with respect to that $message";
+                      if (message.contains("ingredients")) {
+                        FirebaseAuth auth = FirebaseAuth.instance;
+                        User? currentUser = auth.currentUser;
+                        String userId = currentUser!.uid;
+                        var user1 = await getIngredients(userId);
+                        print(user1);
+                        responseText +=
+                            " and you have the following ingredients $user1";
+                      }
                       FirebaseAuth auth = FirebaseAuth.instance;
                       User? currentUser = auth.currentUser;
                       String userId = currentUser!.uid;
-                      var user1 = await getIngredients(userId);
+                      var user1 = await getUserGoals(userId);
+                      var user2 = await getUser(userId);
                       print(user1);
-                      setState(() {
-                        responds("Hello you are a Master nutritionist and cook, you have roleplaying as a ninja. in 1800 tokens, answer to this with respect to that $message and you have the following ingredients $user1").then((value) {
-                          final responseMessage = Message(
-                            text: value ?? 'Response from AI',
-                            isAi: true,
-                          );
-                          messages.add(responseMessage);
-                          print('AI Response: ${responseMessage.text}');
-                        });
+                      responseText +=
+                          " and this is the current user status: the user has the following goals $user1 and you have the following nutrients $user2. focus more only the macro nutrients and also pay less attention to the other ingredients Give me a specific answer to his intended question just while keeping these things in mind! also remember you are a nutritionist, dont overwhlem the user either ";
+                      responds(responseText).then((value) {
+                        final responseMessage = Message(
+                          text: value ?? 'Response from AI',
+                          isAi: true,
+                        );
+                        messages.add(responseMessage);
+                        print('AI Response: ${responseMessage.text}');
                       });
-                    } else {
-                      setState(() {
-                        responds("Hello you are a Master nutritionist and cook, you have roleplaying as a ninja. in 1800 tokens, answer to this with respect to that $message").then((value) {
-                          final responseMessage = Message(
-                            text: value ?? 'Response from AI',
-                            isAi: true,
-                          );
-                          messages.add(responseMessage);
-                          print('AI Response: ${responseMessage.text}');
-                        });
-                      });
-                    }
+                    });
                   },
-                    
+                ),
+              ],
             ),
-          ],
           ),
-
+        ],
       ),
-    ],
-    ),
     );
   }
 }
