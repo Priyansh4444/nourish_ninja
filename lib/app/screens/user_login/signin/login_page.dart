@@ -13,7 +13,7 @@ import 'login.dart';
 class SignInScreen extends StatefulWidget {
   static String routeName = "/login";
 
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -125,7 +125,7 @@ class _SignInScreenState extends State<SignInScreen>
                     position: _slideAnimation,
                     child: Container(
                       padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: NourishNinjaTheme.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
@@ -159,7 +159,7 @@ class _SignInScreenState extends State<SignInScreen>
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: NourishNinjaTheme.darkText,
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(7),
                                   bottomLeft: Radius.circular(7),

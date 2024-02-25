@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_health_connect/flutter_health_connect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nourish_ninja/app/constants.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
-import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/app/widgets/getting_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
 
@@ -79,7 +77,7 @@ class _MyAppState extends State<Stats> {
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            SizedBox(height: 250),
+            const SizedBox(height: 250),
             FractionallySizedBox(
               widthFactor: 0.7,
               child: ElevatedButton(
@@ -88,7 +86,7 @@ class _MyAppState extends State<Stats> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(13),
                       bottomLeft: Radius.circular(13),
@@ -103,7 +101,7 @@ class _MyAppState extends State<Stats> {
                 ),
               ),
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             FractionallySizedBox(
               widthFactor: 0.7,
               child: ElevatedButton(
@@ -114,22 +112,22 @@ class _MyAppState extends State<Stats> {
                   );
                   resultText = 'requestPermissions: $result';
                 },
-                child: const Text('Request Permissions',
-                    style: TextStyle(
-                      color: Colors.white,
-                    )),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(13),
                       bottomLeft: Radius.circular(13),
                     ),
                   ),
                 ),
+                child: const Text('Request Permissions',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
               ),
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             FractionallySizedBox(
               widthFactor: 0.7,
               child: ElevatedButton(
@@ -157,19 +155,19 @@ class _MyAppState extends State<Stats> {
                   var words = await user1.getUser(userId);
                   Navigator.pushNamed(context, GettingStats.routeName);
                 },
-                child: const Text('Get Record',
-                    style: TextStyle(
-                      color: Colors.white,
-                    )),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(13),
                       bottomLeft: Radius.circular(13),
                     ),
                   ),
                 ),
+                child: const Text('Get Record',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
               ),
             ),
           ],

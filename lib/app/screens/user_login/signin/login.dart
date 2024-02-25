@@ -77,7 +77,7 @@ Widget build(BuildContext context) {
               }
               return null;
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: "Email",
               hintText: "Enter your email",
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -86,7 +86,7 @@ Widget build(BuildContext context) {
               hintStyle: TextStyle(color: NourishNinjaTheme.dark_grey),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
             obscureText: true,
             onSaved: (newValue) => password = newValue,
@@ -108,7 +108,7 @@ Widget build(BuildContext context) {
               }
               return null;
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: "Password",
               hintText: "Enter your password",
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -117,7 +117,7 @@ Widget build(BuildContext context) {
               hintStyle: TextStyle(color: NourishNinjaTheme.dark_grey),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             children: [
               Checkbox(
@@ -129,17 +129,17 @@ Widget build(BuildContext context) {
                   });
                 },
               ),
-              Text(
+              const Text(
                 "Remember me",
                 style: TextStyle(color: NourishNinjaTheme.dark_grey),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                   context,
                   ForgotPasswordScreen.routeName,
                 ),
-                child: Text(
+                child: const Text(
                   "Forgot Password",
                   style: TextStyle(
                     color: Colors.black,
@@ -150,7 +150,7 @@ Widget build(BuildContext context) {
             ],
           ),
           FormError(errors: errors),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
               try {
@@ -173,14 +173,14 @@ Widget build(BuildContext context) {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(13),
                   bottomLeft: Radius.circular(13),
                 ),
               ),
             ),
-            child: Text(
+            child: const Text(
               "Continue",
               style: TextStyle(color: Colors.black),
             ),

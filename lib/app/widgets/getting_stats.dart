@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
-import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
 import 'package:nourish_ninja/app/utils/DRI.dart';
 import 'package:nourish_ninja/user_data.dart';
 
 class GettingStats extends StatefulWidget {
   static String routeName = "/getting_stats";
+
+  const GettingStats({super.key});
   @override
   _GettingStatsState createState() => _GettingStatsState();
 }
@@ -24,7 +24,7 @@ class _GettingStatsState extends State<GettingStats> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Getting Stats',
           style: TextStyle(color: Colors.white),
         ),
@@ -37,7 +37,7 @@ class _GettingStatsState extends State<GettingStats> {
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                   bottomLeft: Radius.circular(
@@ -51,7 +51,7 @@ class _GettingStatsState extends State<GettingStats> {
                     child: Column(
                       children: [
                         TextField(
-                          decoration: InputDecoration(labelText: 'Age'),
+                          decoration: const InputDecoration(labelText: 'Age'),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             setState(() {
@@ -60,7 +60,7 @@ class _GettingStatsState extends State<GettingStats> {
                           },
                         ),
                         TextField(
-                          decoration: InputDecoration(labelText: 'Weight (kg)'),
+                          decoration: const InputDecoration(labelText: 'Weight (kg)'),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             setState(() {
@@ -69,7 +69,7 @@ class _GettingStatsState extends State<GettingStats> {
                           },
                         ),
                         TextField(
-                          decoration: InputDecoration(labelText: 'Height (cm)'),
+                          decoration: const InputDecoration(labelText: 'Height (cm)'),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             setState(() {
@@ -78,14 +78,14 @@ class _GettingStatsState extends State<GettingStats> {
                           },
                         ),
                         DropdownButtonFormField<String>(
-                          decoration: InputDecoration(labelText: 'Gender'),
+                          decoration: const InputDecoration(labelText: 'Gender'),
                           value: gender,
                           onChanged: (value) {
                             setState(() {
                               gender = value;
                             });
                           },
-                          items: [
+                          items: const [
                             DropdownMenuItem(
                               value: 'Male',
                               child: Text('Male'),
@@ -99,9 +99,9 @@ class _GettingStatsState extends State<GettingStats> {
                         if (errorText != null)
                           Text(
                             errorText!,
-                            style: TextStyle(color: Colors.red),
+                            style: const TextStyle(color: Colors.red),
                           ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                           onPressed: () {
                             if (age == null ||
@@ -133,7 +133,7 @@ class _GettingStatsState extends State<GettingStats> {
                               Navigator.pushNamed(context, Tracker.routeName);
                             }
                           },
-                          child: Text('Submit'),
+                          child: const Text('Submit'),
                         ),
                       ],
                     ),

@@ -6,7 +6,6 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:nourish_ninja/user_data.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'detector_view.dart';
-import './painters/text_detector_painter.dart';
 
 class TextRecognizerView extends StatefulWidget {
   static String routeName = "/text_recognizer";

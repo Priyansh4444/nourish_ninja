@@ -1,4 +1,3 @@
-import 'dart:math';
 
 double calculateBMR(double weight, double height, int age, String sex) {
   if (sex == 'male') {

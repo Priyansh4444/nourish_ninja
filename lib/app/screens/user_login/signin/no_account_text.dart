@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
 import '../signup/sign_up_screen.dart';
 
 class NoAccountText extends StatelessWidget {
