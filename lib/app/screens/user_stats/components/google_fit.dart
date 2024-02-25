@@ -63,8 +63,6 @@ class _MyAppState extends State<Stats> {
   // ];
 
   List<HealthConnectDataType> types = [
-    HealthConnectDataType.Weight,
-    HealthConnectDataType.Height,
     HealthConnectDataType.Nutrition,
   ];
 
@@ -136,7 +134,7 @@ class _MyAppState extends State<Stats> {
               child: ElevatedButton(
                 onPressed: () async {
                   var startTime =
-                      DateTime.now().subtract(const Duration(days: 4));
+                      DateTime.now().subtract(const Duration(days: 1));
                   var endTime = DateTime.now();
                   var results = await HealthConnectFactory.getRecord(
                     type: types.first,
@@ -146,6 +144,9 @@ class _MyAppState extends State<Stats> {
 
                   resultText = '\ntype: $types\n\n$results';
                   var jsonResults = json.encode(results);
+                  print(
+                    "JSON Results: $jsonResults"
+                  );
                   FirebaseAuth auth = FirebaseAuth.instance;
                   User? currentUser = auth.currentUser;
                   String userId = currentUser!.uid;
@@ -171,7 +172,6 @@ class _MyAppState extends State<Stats> {
                 ),
               ),
             ),
-            Text(resultText),
           ],
         ),
       ),

@@ -57,11 +57,8 @@ class UserData {
 
   Future<String> getUser(String uuid) async {
     // Fetch the data of the user's UUID from Firestore
-    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
-        .instance
-        .collection('users')
-        .doc(uuid)
-        .get();
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uuid).get();
 
     print(snapshot.data().runtimeType);
     Map<String, dynamic> userData = snapshot.data()!;
@@ -97,10 +94,10 @@ class UserData {
   Future<void> addUser(String uuid, String jsonData) async {
     // Create a map of the user data to be added
     Map<String, dynamic> results = json.decode(jsonData)['records'][0];
-    print(results);
+    print("calories: ${results['energy']}");
     // Create a map of the user data to be added
     Map<String, dynamic> userData = {
-      'calories': results['calories'] ?? calories,
+      'calories': results['energy']['kilocalories'] ?? calories,
       'carbohydrates': results['carbohydrates'] ?? carbohydrates,
       'dietaryFiber': results['dietaryFiber'] ?? dietaryFiber,
       'iodine': results['iodine'] ?? iodine,
@@ -126,9 +123,11 @@ class UserData {
 
     // Add the user data to Firestore using the UUID as the index
     await FirebaseFirestore.instance
-        .collection('users')
-        .doc(uuid)
-        .set(userData);
+      .collection('users')
+      .doc(uuid)
+      .set(userData, SetOptions(merge: true));
+
+    print("Success");
   }
 }
 
@@ -165,7 +164,6 @@ Future makeGetRequest() async {
   }
 }
 
-
 class UserIngredients {
   String? ingredients;
 
@@ -187,19 +185,20 @@ class UserIngredients {
         .set(userData);
   }
 }
-  Future<String> getIngredients(String uuid) async {
-    // Fetch the data of the user's UUID from Firestore
-    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
-        .instance
-        .collection('user_ingredients')
-        .doc(uuid)
-        .get();
 
-    print(snapshot.data().runtimeType);
-    Map<String, dynamic> userData = snapshot.data()!;
-    print(userData);
-    var ingredients = userData['ingredients']?.toString() ?? "";
+Future<String> getIngredients(String uuid) async {
+  // Fetch the data of the user's UUID from Firestore
+  DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+      .instance
+      .collection('user_ingredients')
+      .doc(uuid)
+      .get();
 
-    // Update the user data based on the fetched data
-    return ingredients;
-  }
+  print(snapshot.data().runtimeType);
+  Map<String, dynamic> userData = snapshot.data()!;
+  print(userData);
+  var ingredients = userData['ingredients']?.toString() ?? "";
+
+  // Update the user data based on the fetched data
+  return ingredients;
+}
