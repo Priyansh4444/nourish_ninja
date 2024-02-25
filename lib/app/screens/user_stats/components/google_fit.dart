@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nourish_ninja/app/constants.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
+import 'package:nourish_ninja/app/widgets/getting_stats.dart';
 import 'package:nourish_ninja/user_data.dart';
 
 class Stats extends StatefulWidget {
@@ -154,8 +155,7 @@ class _MyAppState extends State<Stats> {
                   print(currentUser.uid);
                   user1.addUser(userId, jsonResults);
                   var words = await user1.getUser(userId);
-                  makeGetRequest();
-                  Navigator.pushNamed(context, Tracker.routeName);
+                  Navigator.pushNamed(context, GettingStats.routeName);
                 },
                 child: const Text('Get Record',
                     style: TextStyle(

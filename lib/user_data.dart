@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -123,45 +124,115 @@ class UserData {
 
     // Add the user data to Firestore using the UUID as the index
     await FirebaseFirestore.instance
-      .collection('users')
-      .doc(uuid)
-      .set(userData, SetOptions(merge: true));
+        .collection('users')
+        .doc(uuid)
+        .set(userData, SetOptions(merge: true));
 
-    print("Success");
+    print("Adding Usergoals for today!");
+
+    final params = {
+      'measurement_units': 'met',
+      'sex': 'male', // Ensure required parameter is present
+      'age_value': '20', // Ensure required parameter is present
+      'age_type': 'yrs', // Ensure required parameter is present
+      'cm': '175',
+      'kilos': '60',
+      'activity_level': 'Active'
+    };
+    final response = await http.get(
+      Uri.parse(
+          "https://nutrition-calculator.p.rapidapi.com/api/nutrition-info?measurement_units=met&sex=male&age_value=20&age_type=yrs&cm=175&kilos=60&activity_level=Active"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'X-RapidAPI-Key': '7bdd0a2ac9msh32e0f02f3e00b93p11a33bjsnbae7af1bae20',
+        'X-RapidAPI-Host': 'nutrition-calculator.p.rapidapi.com'
+      },
+    );
+    print(response.statusCode);
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        print(data);
+      }
+    } else {
+      if (kDebugMode) {
+        print(response.statusCode);
+      }
+    }
   }
 }
 
-Future makeGetRequest() async {
-  print("im here");
-  final params = {
-    'measurement_units': 'met',
-    'sex': 'male', // Ensure required parameter is present
-    'age_value': '20', // Ensure required parameter is present
-    'age_type': 'yrs', // Ensure required parameter is present
-    'cm': '175',
-    'kilos': '60',
-    'activity_level': 'Active'
-  };
-  final response = await http.get(
-    Uri.parse(
-        "https://nutrition-calculator.p.rapidapi.com/api/nutrition-info?measurement_units=met&sex=male&age_value=20&age_type=yrs&cm=175&kilos=60&activity_level=Active"),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'X-RapidAPI-Key': '7bdd0a2ac9msh32e0f02f3e00b93p11a33bjsnbae7af1bae20',
-      'X-RapidAPI-Host': 'nutrition-calculator.p.rapidapi.com'
-    },
-  );
-  print(response.statusCode);
-  var data = jsonDecode(response.body);
-  if (response.statusCode == 200) {
-    if (kDebugMode) {
-      print(data);
-    }
-  } else {
-    if (kDebugMode) {
-      print(response.statusCode);
-    }
-  }
+class UserGoals {
+  String? protein;
+  String? carbohydrates;
+  String? fat;
+  String? fiber;
+  String? calcium;
+  String? iron;
+  String? vitaminA;
+  String? vitaminC;
+  String? vitaminD;
+  String? vitaminE;
+  String? vitaminK;
+  String? thiamin;
+  String? riboflavin;
+  String? niacin;
+  String? vitaminB6;
+  String? folate;
+  String? vitaminB12;
+  String? pantothenicAcid;
+  String? biotin;
+  String? choline;
+  String? selenium;
+  String? zinc;
+  String? copper;
+  String? manganese;
+  String? chromium;
+  String? molybdenum;
+  String? iodine;
+  String? potassium;
+  String? magnesium;
+  String? phosphorus;
+  String? sodium;
+
+  UserGoals({
+    this.protein,
+    this.carbohydrates,
+    this.fat,
+    this.fiber,
+    this.calcium,
+    this.iron,
+    this.vitaminA,
+    this.vitaminC,
+    this.vitaminD,
+    this.vitaminE,
+    this.vitaminK,
+    this.thiamin,
+    this.riboflavin,
+    this.niacin,
+    this.vitaminB6,
+    this.folate,
+    this.vitaminB12,
+    this.pantothenicAcid,
+    this.biotin,
+    this.choline,
+    this.selenium,
+    this.zinc,
+    this.copper,
+    this.manganese,
+    this.chromium,
+    this.molybdenum,
+    this.iodine,
+    this.potassium,
+    this.magnesium,
+    this.phosphorus,
+    this.sodium,
+  });
+}
+
+Future<void> addGoals(String uuid, Map<String, dynamic> jsonData) async {
+  await FirebaseFirestore.instance.collection('user_goals').doc(uuid).set(jsonData, SetOptions(merge: true));
+  print("successful");
 }
 
 class UserIngredients {

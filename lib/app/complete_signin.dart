@@ -6,11 +6,13 @@ import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/google_fit.dart';
 import 'package:nourish_ninja/app/screens/user_stats/user_stats.dart';
+import 'package:nourish_ninja/app/widgets/getting_stats.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SignInScreen.routeName: (context) => const SignInScreen(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   ChatUI.routeName: (context) => const ChatUI(),
+  GettingStats.routeName: (context) => GettingStats(),
   Stats.routeName: (context) => const Stats(),
   Tracker.routeName: (context) => const Tracking(),
   TextRecognizerView.routeName: (context) => const TextRecognizerView(),
