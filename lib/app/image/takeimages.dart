@@ -7,6 +7,8 @@ import 'package:nourish_ninja/app/image/image_to_spoonacular.dart';
 
 class TakeImagesScreen extends StatefulWidget {
   static String routeName = "/take_images";
+
+  const TakeImagesScreen({super.key});
   @override
   _TakeImagesScreenState createState() => _TakeImagesScreenState();
 }
@@ -54,7 +56,7 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Take Images', style: TextStyle(color: Colors.white)),
+        title: const Text('Take Images', style: TextStyle(color: Colors.white)),
         backgroundColor: NourishNinjaTheme.darkText,
       ),
       backgroundColor: NourishNinjaTheme.background,
@@ -64,7 +66,6 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
           children: [
             ElevatedButton(
               onPressed: _getImageFromGallery,
-              child: Text('Select Image from Gallery' , style: TextStyle(color: Colors.white) ),
                style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,
                   shape: const RoundedRectangleBorder(
@@ -74,11 +75,11 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
                     ),
                   ),
                 ),
+              child: const Text('Select Image from Gallery' , style: TextStyle(color: Colors.white) ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _takeImage,
-              child: Text('Take Image', style: TextStyle(color: Colors.white),),
                style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,
                   shape: const RoundedRectangleBorder(
@@ -88,18 +89,19 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
                     ),
                   ),
                 ),
+              child: const Text('Take Image', style: TextStyle(color: Colors.white),),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             if (_image != null)
               Image.file(
                 _image!,
                 height: 200,
               ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             if (_text != null)
               Text(
                 _text!,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
           ],
         ),

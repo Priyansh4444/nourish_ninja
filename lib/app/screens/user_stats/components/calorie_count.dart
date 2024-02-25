@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nourish_ninja/user_data.dart';
 import '../../../general_components/ninja_themes.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;

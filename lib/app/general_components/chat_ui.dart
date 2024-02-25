@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/user_data.dart';
-import 'package:path/path.dart';
 
 // Add a TextEditingController
 final TextEditingController textEditingController = TextEditingController();
@@ -114,7 +112,7 @@ class _ChatUIState extends State<ChatUI> {
         title: const Text(
             'Chatbot', style: TextStyle(color: Colors.white),), 
             backgroundColor: NourishNinjaTheme.darkText, // Add 'const' keyword for improved performance
-            iconTheme: IconThemeData(color: Colors.white), // Set the icon color to white
+            iconTheme: const IconThemeData(color: Colors.white), // Set the icon color to white
       ),
       backgroundColor: NourishNinjaTheme.background,
       body: Column(

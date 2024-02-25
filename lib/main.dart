@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/complete_signin.dart';
-import 'package:nourish_ninja/app/image/takeimages.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 
 void main() {

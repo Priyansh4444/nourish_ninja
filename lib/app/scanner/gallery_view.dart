@@ -43,9 +43,9 @@ class _GalleryViewState extends State<GalleryView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title, style: TextStyle(color: Colors.white)),
+          title: Text(widget.title, style: const TextStyle(color: Colors.white)),
           backgroundColor: NourishNinjaTheme.darkText,
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         backgroundColor: NourishNinjaTheme.background,
         body: _galleryBody());
@@ -54,7 +54,7 @@ class _GalleryViewState extends State<GalleryView> {
   Widget _galleryBody() {
     return Container(
       child: ListView(shrinkWrap: true, children: [
-        SizedBox(
+        const SizedBox(
           height: 36,
         ),
         _image != null
@@ -72,12 +72,10 @@ class _GalleryViewState extends State<GalleryView> {
                 Icons.image,
                 size: 200,
               ),
-        SizedBox(height: 36),
+        const SizedBox(height: 36),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ElevatedButton(
-            child: const Text('From Gallery',
-                style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: NourishNinjaTheme.darkText,
               shape: const RoundedRectangleBorder(
@@ -88,14 +86,14 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
             onPressed: () => _getImage(ImageSource.gallery),
+            child: const Text('From Gallery',
+                style: TextStyle(color: Colors.white)),
           ),
         ),
-        SizedBox(height: 26),
+        const SizedBox(height: 26),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ElevatedButton(
-            child: const Text('Take a picture',
-                style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: NourishNinjaTheme.darkText,
               shape: const RoundedRectangleBorder(
@@ -106,11 +104,13 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
             onPressed: () => _getImage(ImageSource.camera),
+            child: const Text('Take a picture',
+                style: TextStyle(color: Colors.white)),
           ),
         ),
         if (_image != null)
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
           ),
       ]),
     );

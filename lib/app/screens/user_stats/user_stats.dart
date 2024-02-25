@@ -1,7 +1,5 @@
 import 'package:nourish_ninja/app/general_components/chat_ui.dart';
 import 'package:nourish_ninja/app/scanner/google_ml_kit.dart';
-import 'package:nourish_ninja/app/screens/user_login/signin/login.dart';
-import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/bottom_bar_view.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
@@ -64,6 +62,11 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
       }
     });
     super.initState();
+  }
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
   }
 
   void addAllListData() {
@@ -129,9 +132,8 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
                 MaterialPageRoute(builder: (context) => const TextRecognizerView()),
               );
             } else if (index == 3) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUpScreen()),
+              Navigator.pop(
+                context
               );
             }
           },

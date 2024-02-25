@@ -17,7 +17,7 @@ final Map<String, WidgetBuilder> routes = {
   Stats.routeName: (context) => const Stats(),
   Tracker.routeName: (context) => const Tracking(),
   TextRecognizerView.routeName: (context) => const TextRecognizerView(),
-  TakeImagesScreen.routeName: (context) => TakeImagesScreen(),
+  TakeImagesScreen.routeName: (context) => const TakeImagesScreen(),
 };
 
 

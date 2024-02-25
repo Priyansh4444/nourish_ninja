@@ -13,7 +13,7 @@ Future uploadImage(File imageFile) async {
   await dotenv.load(fileName: ".env");
   final apiKey = dotenv.env['SPOONACULAR'];
   var uri = Uri.parse(
-      "https://api.spoonacular.com/food/images/analyze?apiKey=${apiKey}&includeNutrition=true");
+      "https://api.spoonacular.com/food/images/analyze?apiKey=$apiKey&includeNutrition=true");
   var request = http.MultipartRequest("POST", uri);
   var multipartFile = http.MultipartFile("file", stream, length,
       filename: basename(imageFile.path));

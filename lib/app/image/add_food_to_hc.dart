@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_health_connect/flutter_health_connect.dart';
 
 void addNutritionToHealthConnect(name, protein, carbs, fat, calories) async {
   // Check if Google Health Connect is available

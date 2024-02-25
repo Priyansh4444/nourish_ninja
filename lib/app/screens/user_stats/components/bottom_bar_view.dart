@@ -164,7 +164,7 @@ class _BottomBarViewState extends State<BottomBarView>
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => TakeImagesScreen()),
+                              MaterialPageRoute(builder: (context) => const TakeImagesScreen()),
                             );
                           },
                           child: const Icon(
