@@ -473,7 +473,7 @@ class _CalorieCountState extends State<DietView>
                                           children: <Widget>[
                                             Container(
                                               width:
-                                                  ((70 / (user_goals["carbohydrates"]??1/user_data['carbohydrates']??1).toInt().clamp(1,70)) * animation!.value),
+                                                  ((70 / (user_goals["carbohydrates"]!.clamp(1,70)/user_data['carbohydrates']!.clamp(1,70)).toInt().clamp(1,70)) * animation!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
                                                 gradient: LinearGradient(colors: [

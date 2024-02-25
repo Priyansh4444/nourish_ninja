@@ -22,8 +22,8 @@ double calculateDailyCalorieNeeds(double bmr, String activityLevel) {
  Map<String, num> calculateNutrientRecommendations(
     double dailyCalorieNeeds, String sex, int age) {
   final adultNutrientRecommendations = {
-    'protein': 0.8 * dailyCalorieNeeds / 4,
-    'carbohydrates': 4 * dailyCalorieNeeds / 4,
+    'protein': 0.8 * dailyCalorieNeeds / 40,
+    'carbohydrates': 4 * dailyCalorieNeeds / 40,
     'fat': 0.2 * dailyCalorieNeeds / 9,
     'fiber': 25,
     'calcium': 1000,
@@ -56,8 +56,8 @@ double calculateDailyCalorieNeeds(double bmr, String activityLevel) {
   };
 
   final childNutrientRecommendations = {
-    'protein': 0.95 * dailyCalorieNeeds / 4,
-    'carbohydrates': 4 * dailyCalorieNeeds / 4,
+    'protein': 0.95 * dailyCalorieNeeds / 40,
+    'carbohydrates': 4 * dailyCalorieNeeds / 40,
     'fat': 0.2 * dailyCalorieNeeds / 9,
     'fiber': 20,
     'calcium': 1300,
