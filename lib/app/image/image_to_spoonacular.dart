@@ -23,13 +23,14 @@ Future uploadImage(File imageFile) async {
     print("Image Uploaded");
     var responseBody = await http.Response.fromStream(response);
     var rB = jsonDecode(responseBody.body);
-    final name = rB['name'];
+    final name = rB['category']['name'];
     final protein = rB['nutrition']['protein']['value'];
     final carbs = rB['nutrition']['carbs']['value'];
     final fat = rB['nutrition']['fat']['value'];
     final calories = rB['nutrition']['calories']['value'];
-    // addNutritionToHealthConnect(name, protein, carbs, fat, calories);
+    addNutritionToHealthConnect(name, protein, carbs, fat, calories);
     print(name);
+    print(rB);
     print(protein);
     print(carbs);
     print(fat);
