@@ -4,9 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class UserData {
   String calories;
-  String carbohydrates;
+  int carbohydrates;
   String dietaryFiber;
   String iodine;
   String magnesium;
@@ -25,14 +26,11 @@ class UserData {
   String vitaminE;
   String vitaminK;
   String? uid;
-  String weight;
-  String height;
-  String age;
   String? foodItems;
 
   UserData({
-    this.calories = "300",
-    this.carbohydrates = "0",
+    this.calories = "0",
+    this.carbohydrates = 0,
     this.dietaryFiber = "0",
     this.iodine = "0",
     this.magnesium = "0",
@@ -50,47 +48,8 @@ class UserData {
     this.vitaminD = "0",
     this.vitaminE = "0",
     this.vitaminK = "0",
-    this.weight = "53.0",
-    this.height = "1.75",
-    this.age = "20",
     this.foodItems = "",
   });
-
-  Future<String> getUser(String uuid) async {
-    // Fetch the data of the user's UUID from Firestore
-    DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('users').doc(uuid).get();
-
-    print(snapshot.data().runtimeType);
-    Map<String, dynamic> userData = snapshot.data()!;
-    print(userData);
-    calories = (userData['calories'] ?? calories).toString();
-    carbohydrates = (userData['carbohydrates'] ?? carbohydrates).toString();
-    dietaryFiber = userData['dietaryFiber']?.toString() ?? dietaryFiber;
-    iodine = userData['iodine']?.toString() ?? iodine;
-    magnesium = userData['magnesium']?.toString() ?? magnesium;
-    potassium = userData['potassium']?.toString() ?? potassium;
-    protein = userData['protein']?.toString() ?? protein;
-    sodium = userData['sodium']?.toString() ?? sodium;
-    sugar = userData['sugar']?.toString() ?? sugar;
-    totalFat = userData['totalFat']?.toString() ?? totalFat;
-    transFat = userData['transFat']?.toString() ?? transFat;
-    username = userData['username']?.toString() ?? username;
-    vitaminA = userData['vitaminA']?.toString() ?? vitaminA;
-    vitaminB12 = userData['vitaminB12']?.toString() ?? vitaminB12;
-    vitaminB6 = userData['vitaminB6']?.toString() ?? vitaminB6;
-    vitaminC = userData['vitaminC']?.toString() ?? vitaminC;
-    vitaminD = userData['vitaminD']?.toString() ?? vitaminD;
-    vitaminE = userData['vitaminE']?.toString() ?? vitaminE;
-    vitaminK = userData['vitaminK']?.toString() ?? vitaminK;
-    height = userData['height']?.toString() ?? height;
-    weight = userData['weight']?.toString() ?? weight;
-    age = userData['age']?.toString() ?? age;
-    foodItems = userData['foodItems']?.toString() ?? foodItems;
-
-    // Update the user data based on the fetched data
-    return "Calories: $calories, Carbohydrates: $carbohydrates, Dietary Fiber: $dietaryFiber, Iodine: $iodine, Magnesium: $magnesium, Potassium: $potassium, Protein: $protein, Sodium: $sodium, Sugar: $sugar, Total Fat: $totalFat";
-  }
 
   Future<void> addUser(String uuid, String jsonData) async {
     // Create a map of the user data to be added
@@ -117,9 +76,6 @@ class UserData {
       'vitaminD': results['vitaminD'] ?? vitaminD,
       'vitaminE': results['vitaminE'] ?? vitaminE,
       'vitaminK': results['vitaminK'] ?? vitaminK,
-      'height': results['height'] ?? height,
-      'age': results['age'] ?? age,
-      'weight': results['weight'] ?? weight,
     };
 
     // Add the user data to Firestore using the UUID as the index
@@ -127,38 +83,6 @@ class UserData {
         .collection('users')
         .doc(uuid)
         .set(userData, SetOptions(merge: true));
-
-    print("Adding Usergoals for today!");
-
-    final params = {
-      'measurement_units': 'met',
-      'sex': 'male', // Ensure required parameter is present
-      'age_value': '20', // Ensure required parameter is present
-      'age_type': 'yrs', // Ensure required parameter is present
-      'cm': '175',
-      'kilos': '60',
-      'activity_level': 'Active'
-    };
-    final response = await http.get(
-      Uri.parse(
-          "https://nutrition-calculator.p.rapidapi.com/api/nutrition-info?measurement_units=met&sex=male&age_value=20&age_type=yrs&cm=175&kilos=60&activity_level=Active"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'X-RapidAPI-Key': '7bdd0a2ac9msh32e0f02f3e00b93p11a33bjsnbae7af1bae20',
-        'X-RapidAPI-Host': 'nutrition-calculator.p.rapidapi.com'
-      },
-    );
-    print(response.statusCode);
-    var data = jsonDecode(response.body);
-    if (response.statusCode == 200) {
-      if (kDebugMode) {
-        print(data);
-      }
-    } else {
-      if (kDebugMode) {
-        print(response.statusCode);
-      }
-    }
   }
 }
 
@@ -231,7 +155,10 @@ class UserGoals {
 }
 
 Future<void> addGoals(String uuid, Map<String, dynamic> jsonData) async {
-  await FirebaseFirestore.instance.collection('user_goals').doc(uuid).set(jsonData, SetOptions(merge: true));
+  await FirebaseFirestore.instance
+      .collection('user_goals')
+      .doc(uuid)
+      .set(jsonData, SetOptions(merge: true));
   print("successful");
 }
 

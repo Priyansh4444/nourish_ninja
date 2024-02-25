@@ -152,7 +152,6 @@ class _MyAppState extends State<Stats> {
                   var user1 = UserData();
                   print(currentUser.uid);
                   user1.addUser(userId, jsonResults);
-                  var words = await user1.getUser(userId);
                   Navigator.pushNamed(context, GettingStats.routeName);
                 },
                 style: ElevatedButton.styleFrom(

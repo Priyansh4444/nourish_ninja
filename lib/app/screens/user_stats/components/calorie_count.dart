@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nourish_ninja/user_data.dart';
 import '../../../general_components/ninja_themes.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -11,34 +13,90 @@ class DietView extends StatefulWidget {
   final Animation<double>? animation;
 
   @override
-  _CalorieCountState createState() => _CalorieCountState(animation: animation, animationController: animationController);
+  _CalorieCountState createState() => _CalorieCountState(
+      animation: animation, animationController: animationController);
+}
+
+Future<Map<String, dynamic>> getUser(String uuid) async {
+  // Fetch the data of the user's UUID from Firestore
+  DocumentSnapshot<Map<String, dynamic>> snapshot =
+      await FirebaseFirestore.instance.collection('users').doc(uuid).get();
+
+  print(snapshot.data().runtimeType);
+  Map<String, dynamic> userData = snapshot.data()!;
+  print(userData);
+  return snapshot.data()!;
+}
+
+Future<Map<String, dynamic>> getUserGoals(String uuid) async {
+  // Fetch the data of the user's UUID from Firestore
+  DocumentSnapshot<Map<String, dynamic>> snapshot =
+      await FirebaseFirestore.instance.collection('user_goals').doc(uuid).get();
+
+  print(snapshot.data().runtimeType);
+  Map<String, dynamic> userData = snapshot.data()!;
+  print(userData);
+  return snapshot.data()!;
 }
 
 class _CalorieCountState extends State<DietView>
     with SingleTickerProviderStateMixin {
   AnimationController? animationController;
 
-  double proteinCount = 100;
-  double carbsCount = 150;
-  double fatCount = 50;
+  _CalorieCountState({
+    required this.animationController,
+    required this.animation, // Add initializer for 'userId' field
+  });
 
-  _CalorieCountState({required this.animationController, required this.animation});
-
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User? currentUser;
+  String? userId;
+  Map<String, dynamic> user_data = {};
+  Map<String, dynamic> user_goals = {};
+  int? protein;
+  int? carbs;
+  int? fat;
+  int? calories;
+  int? leftCalories;
   @override
   void initState() {
     super.initState();
+    
+    print("I am here Now");
     animationController = AnimationController(
       duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
     animationController!.forward();
+    currentUser = auth.currentUser;
+    userId = currentUser!.uid;
+    fetchData().then((value) {
+      protein = ((user_goals['protein'] ?? 0) - (user_data['protein']['grams'] ?? 0)).toInt();
+      carbs = ((user_goals['carbohydrates'].toInt() ?? 0) - (user_data['carbohydrates'].toInt() ?? 0)).toInt();
+      fat = ((user_goals['fat'].toInt() ?? 0) - (user_data['totalFat']['grams'].toInt() ?? 0)).toInt();
+
+    });
+    
+    // carbs = (user_goals['carbohydrates'] ?? 0) - (user_data['carbohydrates']['grams'] ?? 0);
+    // fat = (user_goals['fat'] ?? 0) - (user_data['fat']['grams'] ?? 0);
+    // calories = (user_goals['calories'] ?? 0) - (user_data['calories']['grams'] ?? 0);
   }
 
+
+  Future<void> fetchData() async {
+    user_data = await getUser(userId!);
+    user_goals = await getUserGoals(userId!);
+    print('---------------------------------');
+    print(user_data['protein']['grams']);
+    print('---------------------------------');
+    print(user_goals);
+  }
   @override
   void dispose() {
     animationController!.dispose();
     super.dispose();
   }
+
   final Animation<double>? animation;
 
   @override
@@ -136,7 +194,7 @@ class _CalorieCountState extends State<DietView>
                                                       const EdgeInsets.only(
                                                           left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(1127 * animation!.value).toInt()}',
+                                                    '${(user_data['calories'] * animation!.value).toInt()}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
@@ -310,7 +368,7 @@ class _CalorieCountState extends State<DietView>
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(1503 * animation!.value).toInt()}',
+                                            '${((user_goals['fat']*9/0.2 - user_data['calories']) * animation!.value).toInt()}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
@@ -348,8 +406,8 @@ class _CalorieCountState extends State<DietView>
                                             HexColor("#8A98E8"),
                                             HexColor("#8A98E8")
                                           ],
-                                          angle: 140 +
-                                              (360 - 140) *
+                                          angle: (user_data['calories']/(user_goals['fat']*9/0.2)*360) +
+                                              (360 - user_data['calories']/(user_goals['fat']*9/0.2)*360) *
                                                   (1.0 - animation!.value)),
                                       child: SizedBox(
                                         width: 108,
@@ -411,7 +469,7 @@ class _CalorieCountState extends State<DietView>
                                       children: <Widget>[
                                         Container(
                                           width:
-                                              ((70 / 1.2) * animation!.value),
+                                              ((70 / user_goals['carbohydrates'].toInt()??1/user_data['carbohydrates']??1) * animation!.value),
                                           height: 4,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(colors: [
@@ -430,7 +488,7 @@ class _CalorieCountState extends State<DietView>
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    '12g left',
+                                    '${carbs}g left',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: NourishNinjaTheme.fontName,
@@ -478,7 +536,7 @@ class _CalorieCountState extends State<DietView>
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / 2) *
+                                              width: ((70 / (user_goals["protein"]/user_data['protein']['grams']!).toInt()) *
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
@@ -499,7 +557,7 @@ class _CalorieCountState extends State<DietView>
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '30g left',
+                                        '${protein}g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily:
@@ -550,7 +608,7 @@ class _CalorieCountState extends State<DietView>
                                         child: Row(
                                           children: <Widget>[
                                             Container(
-                                              width: ((70 / 2.5) *
+                                              width: ((70 / (user_goals['fat'].toInt()??1/user_data['totalFat']["grams"]??1).toInt()) *
                                                   animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
@@ -571,7 +629,7 @@ class _CalorieCountState extends State<DietView>
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '10g left',
+                                        '${fat}g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily:
