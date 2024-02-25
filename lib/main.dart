@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/complete_signin.dart';
+import 'package:nourish_ninja/app/image/takeimages.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Nourish Ninja',
-      initialRoute: SignInScreen.routeName,
+      initialRoute: TakeImagesScreen.routeName,
       routes: routes,
     );
   }

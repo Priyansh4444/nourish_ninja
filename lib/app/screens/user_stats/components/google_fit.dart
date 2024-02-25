@@ -153,6 +153,7 @@ class _MyAppState extends State<Stats> {
                   print(currentUser.uid);
                   user1.addUser(userId, jsonResults);
                   Navigator.pushNamed(context, GettingStats.routeName);
+                  
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: NourishNinjaTheme.darkText,

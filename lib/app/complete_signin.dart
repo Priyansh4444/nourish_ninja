@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nourish_ninja/app/general_components/chat_ui.dart';
 import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
+import 'package:nourish_ninja/app/image/takeimages.dart';
 import 'package:nourish_ninja/app/scanner/google_ml_kit.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 import 'package:nourish_ninja/app/screens/user_login/signup/sign_up_screen.dart';
@@ -16,6 +17,7 @@ final Map<String, WidgetBuilder> routes = {
   Stats.routeName: (context) => const Stats(),
   Tracker.routeName: (context) => const Tracking(),
   TextRecognizerView.routeName: (context) => const TextRecognizerView(),
+  TakeImagesScreen.routeName: (context) => TakeImagesScreen(),
 };
 
 
