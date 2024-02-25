@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/screens/user_stats/components/calorie_count.dart';
 import 'package:nourish_ninja/user_data.dart';
+import 'package:path/path.dart';
 
 // Add a TextEditingController
 final TextEditingController textEditingController = TextEditingController();
@@ -70,13 +73,13 @@ class MessageBubble extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isAi ? Colors.grey[300] : Colors.black,
+        color: isAi ? const Color.fromARGB(255, 47, 47, 47) : NourishNinjaTheme.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: isAi ? Colors.black : Colors.white,
+          color: isAi ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 0, 0, 0),
           fontSize: 16,
         ),
       ),
@@ -109,8 +112,11 @@ class _ChatUIState extends State<ChatUI> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            'Chatbot'), // Add 'const' keyword for improved performance
+            'Chatbot', style: TextStyle(color: Colors.white),), 
+            backgroundColor: NourishNinjaTheme.darkText, // Add 'const' keyword for improved performance
+            iconTheme: IconThemeData(color: Colors.white), // Set the icon color to white
       ),
+      backgroundColor: NourishNinjaTheme.background,
       body: Column(
         children: [
           Expanded(
@@ -133,17 +139,22 @@ class _ChatUIState extends State<ChatUI> {
               children: [
                 Expanded(
                   child: TextField(
-                    controller:
-                        _textEditingController, // Assign the TextEditingController
+                    controller: _textEditingController,
+                    style:const TextStyle(color: Colors.white), // Add the style property to change the input text color
                     decoration: const InputDecoration(
                       hintText: 'Type a message...',
                       border: OutlineInputBorder(),
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // Add the style property to change the input text color
+                      // You can replace Colors.black with your desired color
+                      // For example, Colors.blue, Colors.red, etc.
+                      
                     ),
+                    
                     onChanged: (text) {
                       setState(() {
                         print('Message changed: $text');
-                        message = text ??
-                            ''; // Update the 'message' variable with a null check
+                        message = text ?? '';
                         print(message);
                       });
                     },

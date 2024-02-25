@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 import 'package:nourish_ninja/app/image/image_to_spoonacular.dart';
 
 class TakeImagesScreen extends StatefulWidget {
@@ -53,19 +54,40 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Take Images'),
+        title: Text('Take Images', style: TextStyle(color: Colors.white)),
+        backgroundColor: NourishNinjaTheme.darkText,
       ),
+      backgroundColor: NourishNinjaTheme.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: _getImageFromGallery,
-              child: Text('Select Image from Gallery'),
+              child: Text('Select Image from Gallery' , style: TextStyle(color: Colors.white) ),
+               style: ElevatedButton.styleFrom(
+                  backgroundColor: NourishNinjaTheme.darkText,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(13),
+                      bottomLeft: Radius.circular(13),
+                    ),
+                  ),
+                ),
             ),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: _takeImage,
-              child: Text('Take Image'),
+              child: Text('Take Image', style: TextStyle(color: Colors.white),),
+               style: ElevatedButton.styleFrom(
+                  backgroundColor: NourishNinjaTheme.darkText,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(13),
+                      bottomLeft: Radius.circular(13),
+                    ),
+                  ),
+                ),
             ),
             SizedBox(height: 16),
             if (_image != null)

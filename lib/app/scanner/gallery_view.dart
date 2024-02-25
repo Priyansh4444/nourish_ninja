@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nourish_ninja/app/general_components/ninja_themes.dart';
 
 import 'utils.dart';
 
@@ -42,67 +43,77 @@ class _GalleryViewState extends State<GalleryView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: widget.onDetectorViewModeChanged,
-                child: Icon(
-                  Platform.isIOS ? Icons.camera_alt_outlined : Icons.camera,
-                ),
-              ),
-            ),
-          ],
+          title: Text(widget.title, style: TextStyle(color: Colors.white)),
+          backgroundColor: NourishNinjaTheme.darkText,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
+        backgroundColor: NourishNinjaTheme.background,
         body: _galleryBody());
   }
 
   Widget _galleryBody() {
-    return ListView(shrinkWrap: true, children: [
-      _image != null
-          ? SizedBox(
-              height: 400,
-              width: 400,
-              child: Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Image.file(_image!),
-                ],
+    return Container(
+      child: ListView(shrinkWrap: true, children: [
+        SizedBox(
+          height: 36,
+        ),
+        _image != null
+            ? SizedBox(
+                height: 400,
+                width: 400,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Image.file(_image!),
+                  ],
+                ),
+              )
+            : const Icon(
+                Icons.image,
+                size: 200,
               ),
-            )
-          : const Icon(
-              Icons.image,
-              size: 200,
-            ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          onPressed: _getImageAsset,
-          child: const Text('From Assets'),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: const Text('From Gallery'),
-          onPressed: () => _getImage(ImageSource.gallery),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: const Text('Take a picture'),
-          onPressed: () => _getImage(ImageSource.camera),
-        ),
-      ),
-      if (_image != null)
+        SizedBox(height: 36),
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-              '${_path == null ? '' : 'Image path: $_path'}\n\n${widget.text ?? ''}'),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ElevatedButton(
+            child: const Text('From Gallery',
+                style: TextStyle(color: Colors.white)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: NourishNinjaTheme.darkText,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(13),
+                  bottomLeft: Radius.circular(13),
+                ),
+              ),
+            ),
+            onPressed: () => _getImage(ImageSource.gallery),
+          ),
         ),
-    ]);
+        SizedBox(height: 26),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ElevatedButton(
+            child: const Text('Take a picture',
+                style: TextStyle(color: Colors.white)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: NourishNinjaTheme.darkText,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(13),
+                  bottomLeft: Radius.circular(13),
+                ),
+              ),
+            ),
+            onPressed: () => _getImage(ImageSource.camera),
+          ),
+        ),
+        if (_image != null)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+          ),
+      ]),
+    );
   }
 
   Future _getImage(ImageSource source) async {
