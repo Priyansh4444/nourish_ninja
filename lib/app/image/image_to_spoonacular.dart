@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:nourish_ninja/app/image/add_food_to_hc.dart';
 import 'package:path/path.dart';
 
 Future uploadImage(File imageFile) async {
@@ -22,7 +23,17 @@ Future uploadImage(File imageFile) async {
     print("Image Uploaded");
     var responseBody = await http.Response.fromStream(response);
     var rB = jsonDecode(responseBody.body);
-    print(rB);
+    final name = rB['name'];
+    final protein = rB['nutrition']['protein']['value'];
+    final carbs = rB['nutrition']['carbs']['value'];
+    final fat = rB['nutrition']['fat']['value'];
+    final calories = rB['nutrition']['calories']['value'];
+    // addNutritionToHealthConnect(name, protein, carbs, fat, calories);
+    print(name);
+    print(protein);
+    print(carbs);
+    print(fat);
+    print(calories);
   } else {
     print(response.statusCode);
   }
