@@ -30,6 +30,9 @@ SPOONACULAR=[INSERT_SPOONACULAR_API_KEY]
 flutter run
 ```
 
+While running make sure you have google health connect installed on your device and make sure you request for permissions before clicking "Get Records" to move to the main feature of the app!
+
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
