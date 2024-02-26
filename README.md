@@ -1,16 +1,29 @@
-# nourish_ninja
+# Nourish Ninja
 
-A new Flutter project.
+Nourish Ninja is the first AI powered nutrition app which is your personal nutrition coach and personal dietician!
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter create .
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Replace the android/app/build.gradle with the build.gradle replacement_files/build.gradle
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Replace the android/build.gradle with the android.gradle in replacement_files/android.gradle
+
+Replace the android/app/main/src/main/AndroidManifest.xml with the AndroidManifest.xml replacement_files/AndroidManifest.xml
+
+## Usage
+
+```bash
+flutter run
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.

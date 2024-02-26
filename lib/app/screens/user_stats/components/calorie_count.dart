@@ -198,7 +198,7 @@ class _CalorieCountState extends State<DietView>
                                                           const EdgeInsets.only(
                                                               left: 4, bottom: 3),
                                                       child: Text(
-                                                        '${(user_data['calories'] * animation!.value).toInt()}',
+                                                        '${(user_data['calories']).toInt()}',
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(
                                                           fontFamily:
@@ -372,7 +372,7 @@ class _CalorieCountState extends State<DietView>
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${((user_goals['fat']*9/0.2 - user_data['calories']) * animation!.value).toInt()}',
+                                                '${((user_goals['fat']*9/0.2 - user_data['calories'])).toInt()}',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
@@ -473,7 +473,7 @@ class _CalorieCountState extends State<DietView>
                                           children: <Widget>[
                                             Container(
                                               width:
-                                                  ((70 / (user_goals["carbohydrates"]!.clamp(1,70)/user_data['carbohydrates']!.clamp(1,70)).toInt().clamp(1,70)) * animation!.value),
+                                                  ((70 / (user_goals["carbohydrates"]!.clamp(1,100000)/user_data['carbohydrates']!.clamp(1,10000000)).toInt().clamp(1,70)) * animation!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
                                                 gradient: LinearGradient(colors: [
@@ -492,7 +492,7 @@ class _CalorieCountState extends State<DietView>
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '${carbs}g left',
+                                        '${carbs!.clamp(0,1000000)}g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: NourishNinjaTheme.fontName,
@@ -561,7 +561,7 @@ class _CalorieCountState extends State<DietView>
                                         Padding(
                                           padding: const EdgeInsets.only(top: 6),
                                           child: Text(
-                                            '${protein}g left',
+                                            '${protein!.clamp(0,1000000)}g left',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
@@ -612,7 +612,7 @@ class _CalorieCountState extends State<DietView>
                                             child: Row(
                                               children: <Widget>[
                                                 Container(
-                                                  width: ((70 / (user_goals["fat"]/user_data['totalFat']['grams']).toInt().clamp(1,70)) *
+                                                  width: ((70 / (user_goals["fat"].clamp(1,100000)/user_data['totalFat']['grams']!.clamp(1,100000)).clamp(1,70)) *
                                                       animationController!.value),
                                                   height: 4,
                                                   decoration: BoxDecoration(
@@ -633,7 +633,7 @@ class _CalorieCountState extends State<DietView>
                                         Padding(
                                           padding: const EdgeInsets.only(top: 6),
                                           child: Text(
-                                            '${fat}g left',
+                                            '${fat!.clamp(0,1000000)}g left',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
