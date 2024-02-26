@@ -2,6 +2,8 @@
 
 Nourish Ninja is the first AI powered nutrition app which is your personal nutrition coach and personal dietician!
 
+This was made for GDSC Solution Challenge!!!
+
 ## Installation
 
 
