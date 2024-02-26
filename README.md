@@ -13,13 +13,13 @@ Video: https://youtu.be/x2Q5wAbd_ng
 flutter create .
 ```
 
-Replace the android/app/build.gradle with the build.gradle replacement_files/build.gradle
+### Steps to Update Project Configuration
 
-Replace the android/build.gradle with the android.gradle in replacement_files/android.gradle
+1. Replace `android/app/build.gradle` with `replacement_files/build.gradle`.
+2. Replace `android/build.gradle` with `replacement_files/android.gradle`.
+3. Replace `android/app/src/main/AndroidManifest.xml` with `replacement_files/AndroidManifest.xml`.
+4. Add a ".env" file in the directory of the folder with the following format:
 
-Replace the android/app/main/src/main/AndroidManifest.xml with the AndroidManifest.xml replacement_files/AndroidManifest.xml
-
-Add a ".env" file in the directory of the folder in the format:
 
 ```dart
 API_KEY="INSERT_GEMINI_PRO_API_KEY"
@@ -41,16 +41,21 @@ Make sure that you press the apple icon to take images of the reciept and click 
 <img src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase"> <img src="https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white"> <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
 
 
+## Demo
 
-# Future Plans
 
-Adding Notifications to remind user what to eat throughut the day. 
 
-Fixing some of the bugs which are present along with the colour scheme.
 
-Making the app a lot smoother by moving a lot more processes on the cloud.
+## Future Plans
 
-Changing my file structure to make it easier to read!
+### To-Do List
+
+- [ ] Adding Notifications to remind user what to eat throughout the day.
+- [ ] Fixing some of the bugs present.
+- [ ] Adjusting the color scheme for better aesthetics.
+- [ ] Moving more processes to the cloud for improved performance.
+- [ ] Restructuring file organization for better readability.
+
 
 
 ## Contributing
