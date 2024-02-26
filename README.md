@@ -32,6 +32,7 @@ flutter run
 
 While running make sure you have google health connect installed on your device and make sure you request for permissions before clicking "Get Records" to move to the main feature of the app!
 
+Make sure that you press the apple icon to take images of the reciept and click on the plus icon to take the images of the food to add to your database on firebase!
 
 ## Contributing
 
