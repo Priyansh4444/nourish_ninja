@@ -17,6 +17,13 @@ Replace the android/build.gradle with the android.gradle in replacement_files/an
 
 Replace the android/app/main/src/main/AndroidManifest.xml with the AndroidManifest.xml replacement_files/AndroidManifest.xml
 
+Add a ".env" file in the directory of the folder in the format:
+
+```dart
+API_KEY=[INSERT_GEMINI_PRO_API_KEY]
+SPOONACULAR=[INSERT_SPOONACULAR_API_KEY]
+```
+
 ## Usage
 
 ```bash
