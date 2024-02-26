@@ -41,16 +41,16 @@ Make sure that you press the apple icon to take images of the reciept and click 
 <img src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase"> <img src="https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white"> <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
 
 
-## Demo
+## Images!
 
-
-
+<img src="./readme_assets/Screenshot1.jpg"><img src="./readme_assets/screenshot2.jpg"><img src="./readme_assets/screenshot3.jpg"><img src="./readme_assets/Screenshot4.jpg"><img src="./readme_assets/Screenshot5.jpg"><img src="./readme_assets/Screenshot6.jpg"><img src="./readme_assets/Screenshot7.jpg"><img src="./readme_assets/Screenshot8.jpg">
 
 ## Future Plans
 
 ### To-Do List
 
 - [ ] Adding Notifications to remind user what to eat throughout the day.
+- [ ] Making the DRI calculations more smoother!
 - [ ] Fixing some of the bugs present.
 - [ ] Adjusting the color scheme for better aesthetics.
 - [ ] Moving more processes to the cloud for improved performance.
