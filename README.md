@@ -43,7 +43,10 @@ Make sure that you press the apple icon to take images of the reciept and click 
 
 ## Images!
 
-<img src="./readme_assets/Screenshot1.jpg"><img src="./readme_assets/screenshot2.jpg"><img src="./readme_assets/screenshot3.jpg"><img src="./readme_assets/Screenshot4.jpg"><img src="./readme_assets/Screenshot5.jpg"><img src="./readme_assets/Screenshot6.jpg"><img src="./readme_assets/Screenshot7.jpg"><img src="./readme_assets/Screenshot8.jpg">
+<img src="./readme_assets/Screenshot1.jpg" width="30%"><img src="./readme_assets/screenshot2.jpg" width="30%"><img src="./readme_assets/screenshot3.jpg" width="30%">
+<img src="./readme_assets/Screenshot4.jpg" width="30%"><img src="./readme_assets/Screenshot5.jpg" width="30%"><img src="./readme_assets/Screenshot6.jpg" width="30%">
+<img src="./readme_assets/Screenshot7.jpg" width="30%"><img src="./readme_assets/Screenshot8.jpg" width="30%">
+
 
 ## Future Plans
 
