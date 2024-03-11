@@ -58,6 +58,7 @@ Make sure that you press the apple icon to take images of the reciept and click 
 - [ ] Adjusting the color scheme for better aesthetics.
 - [ ] Moving more processes to the cloud for improved performance.
 - [ ] Restructuring file organization for better readability.
+- [ ] Add a Timer for foods so they are eaten fresh and don't get wasted!
 
 
 
