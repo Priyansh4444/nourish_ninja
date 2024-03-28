@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class UserData {
   String calories;
   int carbohydrates;
