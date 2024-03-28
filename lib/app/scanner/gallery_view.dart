@@ -43,7 +43,8 @@ class _GalleryViewState extends State<GalleryView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title, style: const TextStyle(color: Colors.white)),
+          title:
+              Text(widget.title, style: const TextStyle(color: Colors.white)),
           backgroundColor: NourishNinjaTheme.darkText,
           iconTheme: const IconThemeData(color: Colors.white),
         ),

@@ -63,6 +63,7 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
     });
     super.initState();
   }
+
   @override
   void dispose() {
     animationController?.dispose();
@@ -76,8 +77,8 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
       DietView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
-            curve:
-                const Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+            curve: const Interval((1 / count) * 1, 1.0,
+                curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
       ),
     );
@@ -129,12 +130,11 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
             } else if (index == 2) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const TextRecognizerView()),
+                MaterialPageRoute(
+                    builder: (context) => const TextRecognizerView()),
               );
             } else if (index == 3) {
-              Navigator.pop(
-                context
-              );
+              Navigator.pop(context);
             }
           },
         ),
@@ -188,7 +188,6 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
       },
     );
   }
-  
 
   Widget getAppBarUI() {
     return Column(
@@ -258,5 +257,4 @@ class _TrackerState extends State<Tracker> with TickerProviderStateMixin {
       ],
     );
   }
-  
 }

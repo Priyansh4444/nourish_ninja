@@ -177,7 +177,8 @@ class _SignInScreenState extends State<SignInScreen>
                                 const Text(
                                   "Google",
                                   style: TextStyle(
-                                    color: Colors.white, // Change color to black
+                                    color:
+                                        Colors.white, // Change color to black
                                   ),
                                 ),
                               ],

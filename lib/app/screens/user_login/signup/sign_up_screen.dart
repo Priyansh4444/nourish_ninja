@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nourish_ninja/app/screens/user_login/signin/login_page.dart';
 import '../../../constants.dart';
-import './sign_in.dart';    
+import './sign_in.dart';
 
 class SignUpScreen extends StatelessWidget {
   static String routeName = "/sign_up";
-  
+
   const SignUpScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,6 @@ class SignUpScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             decoration: TextDecoration.underline,
                           ),
-                  
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -73,9 +72,7 @@ class SignUpScreen extends StatelessWidget {
                         // Added Expanded widget
                         flex: 8, // Set flex value to 8
                         child: ElevatedButton(
-                          onPressed: () async {
-
-                          },
+                          onPressed: () async {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
@@ -102,7 +99,6 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-                    
                   ),
                   const SizedBox(height: 16),
                   Text(

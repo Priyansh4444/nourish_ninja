@@ -66,30 +66,34 @@ class _TakeImagesScreenState extends State<TakeImagesScreen> {
           children: [
             ElevatedButton(
               onPressed: _getImageFromGallery,
-               style: ElevatedButton.styleFrom(
-                  backgroundColor: NourishNinjaTheme.darkText,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(13),
-                      bottomLeft: Radius.circular(13),
-                    ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: NourishNinjaTheme.darkText,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(13),
+                    bottomLeft: Radius.circular(13),
                   ),
                 ),
-              child: const Text('Select Image from Gallery' , style: TextStyle(color: Colors.white) ),
+              ),
+              child: const Text('Select Image from Gallery',
+                  style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _takeImage,
-               style: ElevatedButton.styleFrom(
-                  backgroundColor: NourishNinjaTheme.darkText,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(13),
-                      bottomLeft: Radius.circular(13),
-                    ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: NourishNinjaTheme.darkText,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(13),
+                    bottomLeft: Radius.circular(13),
                   ),
                 ),
-              child: const Text('Take Image', style: TextStyle(color: Colors.white),),
+              ),
+              child: const Text(
+                'Take Image',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 16),
             if (_image != null)

@@ -9,10 +9,8 @@ import '../../../constants.dart';
 import '../components/error.dart';
 import '../../forgot_password/forgot.dart';
 
-
 class SignForm extends StatefulWidget {
   const SignForm({super.key});
-
 
   @override
   _SignFormState createState() => _SignFormState();
@@ -25,12 +23,12 @@ class _SignFormState extends State<SignForm> {
   bool? remember = false;
   final List<String?> errors = [];
   late final FirebaseAuth _auth = FirebaseAuth.instance;
-    @override
+  @override
   void initState() {
     super.initState();
     Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 
   void addError({String? error}) {
@@ -51,8 +49,8 @@ class _SignFormState extends State<SignForm> {
 
   @override
   @override
-Widget build(BuildContext context) {
-  return Form(
+  Widget build(BuildContext context) {
+    return Form(
       key: _formKey,
       child: Column(
         children: [
@@ -188,5 +186,5 @@ Widget build(BuildContext context) {
         ],
       ),
     );
-}
+  }
 }

@@ -103,11 +103,9 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
     final recognizedText = await _textRecognizer.processImage(inputImage);
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
-
-      
     } else {
       await dotenv.load();
-    final apiKey = dotenv.env['API_KEY'];
+      final apiKey = dotenv.env['API_KEY'];
 
       if (apiKey == null) {
         print('No \$API_KEY environment variable');
@@ -121,24 +119,21 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
       final chat = model.startChat(history: [
         Content.text(
             'Make the following recognized text into a text of ingredients and return it as ONLY A JSON TO ME in AND DONT PUT ANYTHING YOU ARE NOT SURE OF, also remove the ```json and stuff and make it perfectly parsable as a normal text 1800 tokens:'),
-        Content.model([
-          TextPart('Ok I will do so!')
-        ]),
+        Content.model([TextPart('Ok I will do so!')]),
       ]);
       print(recognizedText.text);
       var content = Content.text(recognizedText.text);
       var response = await chat.sendMessage(content);
       print(response.text);
-     
+
       _text = 'Added to database $response';
-                FirebaseAuth auth = FirebaseAuth.instance;
-                User? currentUser = auth.currentUser;
-                String userId = currentUser!.uid;
-                var user1 = UserIngredients();
-                user1.addIngredients(userId, response.text!);
-      
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? currentUser = auth.currentUser;
+      String userId = currentUser!.uid;
+      var user1 = UserIngredients();
+      user1.addIngredients(userId, response.text!);
+
       _customPaint = null;
-      
     }
     _isBusy = false;
     if (mounted) {

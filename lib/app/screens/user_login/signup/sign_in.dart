@@ -13,8 +13,6 @@ class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
   @override
   _SignInFormState createState() => _SignInFormState();
-  
-  
 }
 
 class _SignInFormState extends State<SignInForm> {
@@ -25,13 +23,14 @@ class _SignInFormState extends State<SignInForm> {
   bool? remember = false;
   final List<String?> errors = [];
   late final FirebaseAuth _auth = FirebaseAuth.instance;
-    @override
+  @override
   void initState() {
     super.initState();
     Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
+
   void addError({String? error}) {
     if (!errors.contains(error)) {
       setState(() {
@@ -127,7 +126,7 @@ class _SignInFormState extends State<SignInForm> {
                 return "";
               } else if ((password != value)) {
                 addError(error: kMatchPassError);
-                return "";  
+                return "";
               }
               return null;
             },
@@ -146,14 +145,15 @@ class _SignInFormState extends State<SignInForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 try {
-                  UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+                  UserCredential userCredential =
+                      await _auth.createUserWithEmailAndPassword(
                     email: email!,
                     password: password!,
-                  );  
-                Constants.userUUID = userCredential.user!.uid;
+                  );
+                  Constants.userUUID = userCredential.user!.uid;
                   // User successfully signed in
-                  
-                Navigator.pushNamed(context, Stats.routeName);
+
+                  Navigator.pushNamed(context, Stats.routeName);
                   // Navigate to another screen, etc.
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {

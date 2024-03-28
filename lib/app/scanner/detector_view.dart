@@ -50,14 +50,13 @@ class _DetectorViewState extends State<DetectorView> {
             text: widget.text,
             onImage: widget.onImage,
             onDetectorViewModeChanged: _onDetectorViewModeChanged)
-            : CameraView(
-              customPaint: widget.customPaint,
-              onImage: widget.onImage,
-              onCameraFeedReady: widget.onCameraFeedReady,
-              onCameraLensDirectionChanged: widget.onCameraLensDirectionChanged,
-              initialCameraLensDirection: widget.initialCameraLensDirection,
-              )
-              ;
+        : CameraView(
+            customPaint: widget.customPaint,
+            onImage: widget.onImage,
+            onCameraFeedReady: widget.onCameraFeedReady,
+            onCameraLensDirectionChanged: widget.onCameraLensDirectionChanged,
+            initialCameraLensDirection: widget.initialCameraLensDirection,
+          );
   }
 
   void _onDetectorViewModeChanged() {
@@ -71,6 +70,11 @@ class _DetectorViewState extends State<DetectorView> {
     }
     setState(() {});
   }
-  
-  CameraView({CustomPaint? customPaint, required Function(InputImage inputImage) onImage, Function()? onCameraFeedReady, Function(CameraLensDirection direction)? onCameraLensDirectionChanged, required CameraLensDirection initialCameraLensDirection}) {}
+
+  CameraView(
+      {CustomPaint? customPaint,
+      required Function(InputImage inputImage) onImage,
+      Function()? onCameraFeedReady,
+      Function(CameraLensDirection direction)? onCameraLensDirectionChanged,
+      required CameraLensDirection initialCameraLensDirection}) {}
 }
